@@ -1,8 +1,3 @@
----
-title: 'BingoGCN: Towards Scalable and Efficient GNN Acceleration with Fine-Grained Partitioning and SLT'
-
----
-
 # BingoGCN: Towards Scalable and Efficient GNN Acceleration with Fine-Grained Partitioning and SLT
 
  
