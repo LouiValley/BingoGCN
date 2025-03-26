@@ -1,0 +1,90 @@
+Start time: 2024-07-17 12:03:03
+Namespace(num_layers=4, epochs=400, dim_hidden=96, repeat_times=5, linear_sparsity=0, train_mode='normal', rerand_freq=0, exp_name='SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0', weight_l1=0.0005, sampling=None, samplingtype=None, sparse_decay=False, attack=None, auroc=False, attack_eps=0, dataset='Reddit', random_seed=None, resume=False, cuda=True, type_model='GCN', dropout=0.5, lr=0.01, weight_decay=0.0005, transductive=True, activation='relu', type_norm='batch', command='train', force_restart=False, seed_by_time=True, print_train_loss=False, num_gpus=1, output_dir='__outputs__', sync_dir='__sync__', save_best_model=True, optimizer='Adam', scheduler='MultiStepLR', warm_epochs=0, finetuning_epochs=0, finetuning_lr=None, lr_milestones=[900, 1000, 1100], checkpoint_epochs=[], multisteplr_gamma=0.1, learning_framework='SupervisedLearning', bn_track_running_stats=True, bn_affine=True, bn_momentum=0.1, init_mode='kaiming_uniform', init_mode_mask='kaiming_uniform', init_mode_linear=None, init_scale=1.0, init_scale_score=1.0, heads=1, sparsity_list=None, num_mask=3, enable_mask=False, enable_abs_comp=False, validate=False, pretrained_path=None, prunedw_path=None, enable_sw_mm=False, BN_GIN=False, evatime=False, drawadj=False, evanum=50, METIS=False, spadj=False, adjsparsity_ratio=0.0, enable_feat_pruning=False, featsparsity_ratio=0.0, enable_node_pruning=False, x_pruning_layer=0, regular_weight_pruning=None, num_of_weight_blocks=1, global_th_for_rowbyrow=False, download_prunedw=False, gra_part=False, no_edge_weight=False, sparse_tensor=False, original_edge_weight=False, only_train_data=False, flowgnn_debug=False, nmsparsity=False, M=4, unstructured_for_last_layer=False, xor_seed_using_instance_number=False, outgoing_centroids=False, folded_layer=0, BN_track_running_stats=True, folded_SM=False, half_folded=False, batch_size=1024, elastic_net=False, elastic_lambda=5e-08, l1_ratio=0.5, no_norm=False, adp=False, SLT_Bonder=False, SLTAtom=False, SLTBond=False, SLTRoot=False, SLTAtom_ini='default', SLTBond_ini='default', SLTRoot_ini='default', local_pruning=False, local_sparsity_list=None, inference_time=False, nm_decay=0.0015, num_feats=602, num_classes=41, num_nodes=232965)
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(602, 96)
+    (1): GCNConv(96, 96)
+    (2): GCNConv(96, 96)
+    (3): GCNConv(96, 41)
+  )
+  (layers_bn): ModuleList(
+    (0): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+./__outputs__/SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0/dump..SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0.pth
+best acc: 0.9489255515860905
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(602, 96)
+    (1): GCNConv(96, 96)
+    (2): GCNConv(96, 96)
+    (3): GCNConv(96, 41)
+  )
+  (layers_bn): ModuleList(
+    (0): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+./__outputs__/SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0/dump..SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0.pth
+best acc: 0.9489614562949931
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(602, 96)
+    (1): GCNConv(96, 96)
+    (2): GCNConv(96, 96)
+    (3): GCNConv(96, 41)
+  )
+  (layers_bn): ModuleList(
+    (0): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+./__outputs__/SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0/dump..SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0.pth
+best acc: 0.9491230274850546
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(602, 96)
+    (1): GCNConv(96, 96)
+    (2): GCNConv(96, 96)
+    (3): GCNConv(96, 41)
+  )
+  (layers_bn): ModuleList(
+    (0): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+./__outputs__/SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0/dump..SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0.pth
+best acc: 0.947758648546757
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(602, 96)
+    (1): GCNConv(96, 96)
+    (2): GCNConv(96, 96)
+    (3): GCNConv(96, 41)
+  )
+  (layers_bn): ModuleList(
+    (0): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+./__outputs__/SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0/dump..SLT_structured_Dense_baseline_GCN_HD96_Reddit_L4_S0.pth
+best acc: 0.9481715526991364
+acc mean: 0.9485880473224064  acc std: 0.0005293235803366143 ece mean: 0.0 ece std 0.0
+End time: 2024-07-17 13:25:45
+Duration: 1:22:42.593745
