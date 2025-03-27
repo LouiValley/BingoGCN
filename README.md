@@ -61,8 +61,8 @@ python log_to_csv.py
 ```
 This script aggregates the results into CSV files within each log folder.
 
-Finally, compare these results with the ones in the expected_results folder. You should verify that the data points in the figures match, allowing for minor discrepancies.
-
+Finally, compare these results with the ones in the expected_results folder.
+You can verify that the data points in the figures match, allowing for minor discrepancies.
 
 ## Exsample
 > **Centroid (Sampling) Ratio vs. Accuracy: Fig.15
