@@ -43,7 +43,7 @@ conda activate BingoGCN
 
 > **CMQ codes for GNNs.**
 > Centroid (Sampling) Ratio vs. Accuracy: Fig.15
-
+![Figure 15](images/Fig15.svg)
 ```bash
 # Ours (CMQ) - Sampling ratio 1%
 python -m BingoGCN.graph_partitioning.main \
@@ -66,7 +66,7 @@ python -m BingoGCN.graph_partitioning.main \
 
 > **CMQ codes for GNNs.**
 > Num of Partitions vs. CMQ's Accuracy with fixed centroid ratio at 1%: Fig.16
-
+![Figure 16](images/Fig16.svg)
 ```bash
 # Ours (CMQ) - #parts=64:
 python -m BingoGCN.graph_partitioning.main \
@@ -91,7 +91,7 @@ python -m BingoGCN.graph_partitioning.main \
 
 > **CMQ codes for GNNs.**
 > Traditional offline K-means vs. CMQ: Fig.17
-
+![Figure 17](images/Fig17.svg)
 ```bash
 # Offline K-means - #Centroids=64:
 python -m BingoGCN.graph_partitioning.main \
@@ -123,7 +123,7 @@ python -m BingoGCN.graph_partitioning.main \
 
 > **SLT Training codes for GNNs.**
 > Weight Capacity vs. Accuracy: Fig.18
-
+![Figure 18](images/Fig18.svg)
 ```bash
 # FG Sparsity with SLT - #dim_hidden=192:
 python ./BingoGCN/main.py \
@@ -183,7 +183,7 @@ python ./BingoGCN/main.py \
 
 > **SLT Training codes for GNNs.**
 > Model Sparsity vs. Accuracy: Fig.19
-
+![Figure 19](images/Fig19.svg)
 ```bash
 # FG Sparsity with SLT - Sparsity=50%:
 python ./BingoGCN/main.py \
