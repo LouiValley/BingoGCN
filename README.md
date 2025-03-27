@@ -25,9 +25,16 @@ pip install pymetis         # For METIS partitioning
 pip install torch_geometric # For accessing datasets
 ``` -->
 
-## Usage of the Provided Codes
+<!-- This release contains codes focusing on the algorithmic part described in the paper.
 
-> Environment Setup
+> **Offline METIS Graph Partitioning for Fig.1 in the paper.**
+> Dataset: OGBN-Arxiv with varying numbers of partitions
+> Code location: ./offline-METIS/ -->
+
+
+# Usage of the Provided Codes
+
+## Environment Setup
 ```bash
 git clone https://github.com/LouiValley/BingoGCN.git
 
@@ -35,14 +42,30 @@ conda env create -f environment.yml
 conda activate BingoGCN
 ```
 
-<!-- This release contains codes focusing on the algorithmic part described in the paper.
+## Running the Experiments
+> ### To experiment with all data points:
+```bash
+sh all_jobs.sh
+```
+> ### To experiment with "Ours" only:
+```bash
+sh ours.sh
+```
+Removing the --dataset Reddit option will speed up the process.
 
-> **Offline METIS Graph Partitioning for Fig.1 in the paper.**
-> Dataset: OGBN-Arxiv with varying numbers of partitions
-> Code location: ./offline-METIS/ -->
+## Post-Experiment Steps
+After all experiments have completed, execute:
 
-> **CMQ codes for GNNs.**
-> Centroid (Sampling) Ratio vs. Accuracy: Fig.15
+```bash
+python log_to_csv.py
+```
+This script aggregates the results into CSV files within each log folder.
+
+Finally, compare these results with the ones in the expected_results folder. You should verify that the data points in the figures match, allowing for minor discrepancies.
+
+
+## Exsample
+> **Centroid (Sampling) Ratio vs. Accuracy: Fig.15
 ![Figure 15](images/Fig15.svg)
 ```bash
 # Ours (CMQ) - Sampling ratio 1%
@@ -64,8 +87,7 @@ python -m BingoGCN.graph_partitioning.main \
     --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
 ```
 
-> **CMQ codes for GNNs.**
-> Num of Partitions vs. CMQ's Accuracy with fixed centroid ratio at 1%: Fig.16
+> **Num of Partitions vs. CMQ's Accuracy with fixed centroid ratio at 1%: Fig.16
 ![Figure 16](images/Fig16.svg)
 ```bash
 # Ours (CMQ) - #parts=64:
@@ -89,8 +111,7 @@ python -m BingoGCN.graph_partitioning.main \
     --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
 ```
 
-> **CMQ codes for GNNs.**
-> Traditional offline K-means vs. CMQ: Fig.17
+> **Traditional offline K-means vs. CMQ: Fig.17
 ![Figure 17](images/Fig17.svg)
 ```bash
 # Offline K-means - #Centroids=64:
@@ -121,8 +142,7 @@ python -m BingoGCN.graph_partitioning.main \
     --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
 ```
 
-> **SLT Training codes for GNNs.**
-> Weight Capacity vs. Accuracy: Fig.18
+> **Weight Capacity vs. Accuracy: Fig.18
 ![Figure 18](images/Fig18.svg)
 ```bash
 # FG Sparsity with SLT - #dim_hidden=192:
@@ -181,8 +201,7 @@ python ./BingoGCN/main.py \
     --type_norm None
 ```
 
-> **SLT Training codes for GNNs.**
-> Model Sparsity vs. Accuracy: Fig.19
+> **Model Sparsity vs. Accuracy: Fig.19
 ![Figure 19](images/Fig19.svg)
 ```bash
 # FG Sparsity with SLT - Sparsity=50%:
