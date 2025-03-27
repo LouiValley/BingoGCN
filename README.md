@@ -64,7 +64,7 @@ This script aggregates the results into CSV files within each log folder.
 Finally, compare these results with the ones in the expected_results folder.
 You can verify that the data points in the figures match, allowing for minor discrepancies.
 
-## Exsample
+## Example
 > **Centroid (Sampling) Ratio vs. Accuracy: Fig.15
 ![Figure 15](images/Fig15.svg)
 ```bash
