@@ -488,7 +488,7 @@ with torch.no_grad():
         if best_model_path is not None:
             model_paths = [
                 path.replace("best", f"{i}.best")
-                for i in range(0, 5)
+                for i in range(0, 3)
                 for path in [best_model_path]
             ]
             val_accuracies = []

@@ -525,11 +525,11 @@ def train(exp_name, args, prefix="", idx=1):
         else:
             result = test_acc["rocauc"]
 
-        if not args.exp_name == "":
-            torch.save(
-                {"Val": valid_curve[best_epoch], "Test": result},
-                args.exp_name,
-            )
+        # if not args.exp_name == "":
+        #     torch.save(
+        #         {"Val": valid_curve[best_epoch], "Test": result},
+        #         args.exp_name,
+        #     )
 
 
         return result, 0
