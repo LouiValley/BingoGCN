@@ -1,0 +1,26 @@
+| # of train set : 153431
+| # of val set   : 23831
+| # of test set  : 55703
+Layer1
+Layer2
+Layer3
+Layer4
+0.9291779616896756
+| # of train set : 153431
+| # of val set   : 23831
+| # of test set  : 55703
+Layer1
+Layer2
+Layer3
+Layer4
+0.9268441556110084
+| # of train set : 153431
+| # of val set   : 23831
+| # of test set  : 55703
+Layer1
+Layer2
+Layer3
+Layer4
+0.9298781035132757
+[0.9291779616896756, 0.9268441556110084, 0.9298781035132757]
+{'Dataset': 'Reddit', 'Model Name': 'GCN', 'No partition Test Acc': '0.950842863041488', 'Test Acc': '0.92863', 'Avg num intra nodes': 7067.0, 'Avg num inter nodes': 92327.0, 'Avg num intra and inter nodes': 99394.0, 'Execution time': 6083.96515417099}

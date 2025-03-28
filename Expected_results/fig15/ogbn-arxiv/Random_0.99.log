@@ -1,0 +1,17 @@
+Layer1
+Layer2
+Layer3
+Layer4
+0.6682920807357571
+Layer1
+Layer2
+Layer3
+Layer4
+0.6583132728432401
+Layer1
+Layer2
+Layer3
+Layer4
+0.6723659033393
+[0.6682920807357571, 0.6583132728432401, 0.6723659033393]
+{'Dataset': 'ogbn-arxiv', 'Model Name': 'GCN', 'No partition Test Acc': '0.7199514433265437', 'Test Acc': '0.66632', 'Avg num intra nodes': 1288.0, 'Avg num inter nodes': 13.0, 'Avg num intra and inter nodes': 1301.0, 'Execution time': 49.1594021320343}

@@ -1,0 +1,53 @@
+Start time: 2025-03-28 23:52:27
+Namespace(num_layers=3, epochs=400, dim_hidden=192, repeat_times=3, linear_sparsity=0.1875, train_mode='score_only', rerand_freq=0, exp_name='SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF', weight_l1=0.0005, sampling=None, samplingtype=None, sparse_decay=True, attack=None, auroc=False, attack_eps=0, dataset='Pubmed', random_seed=None, resume=False, cuda=True, type_model='GCN', dropout=0, lr=0.01, weight_decay=0, transductive=True, activation='relu', type_norm='None', command='train', force_restart=False, seed_by_time=True, print_train_loss=False, num_gpus=1, output_dir='__outputs__', sync_dir='__sync__', save_best_model=True, optimizer='Adam', scheduler='CustomCosineLR', warm_epochs=0, finetuning_epochs=0, finetuning_lr=None, lr_milestones=[900, 1000, 1100], checkpoint_epochs=[], multisteplr_gamma=0.1, learning_framework='SupervisedLearning', bn_track_running_stats=True, bn_affine=True, bn_momentum=0.1, init_mode='signed_constant_SF', init_mode_mask='kaiming_uniform', init_mode_linear=None, init_scale=1.0, init_scale_score=1.0, heads=1, sparsity_list=[0.1875, 0.458333, 0.729167], num_mask=3, enable_mask=True, enable_abs_comp=True, validate=False, pretrained_path=None, prunedw_path=None, enable_sw_mm=False, BN_GIN=False, evatime=False, drawadj=False, evanum=50, METIS=False, spadj=False, adjsparsity_ratio=0.0, enable_feat_pruning=False, featsparsity_ratio=0.0, enable_node_pruning=False, x_pruning_layer=0, regular_weight_pruning=None, num_of_weight_blocks=1, global_th_for_rowbyrow=False, download_prunedw=False, gra_part=False, no_edge_weight=False, sparse_tensor=False, original_edge_weight=False, only_train_data=False, flowgnn_debug=False, nmsparsity=True, M=16, unstructured_for_last_layer=True, xor_seed_using_instance_number=False, outgoing_centroids=False, folded_layer=0, BN_track_running_stats=True, folded_SM=False, half_folded=False, batch_size=1024, elastic_net=False, elastic_lambda=5e-08, l1_ratio=0.5, no_norm=False, adp=False, SLT_Bonder=False, SLTAtom=False, SLTBond=False, SLTRoot=False, SLTAtom_ini='default', SLTBond_ini='default', SLTRoot_ini='default', dense_for_last_layer=False, local_pruning=False, local_sparsity_list=None, inference_time=False, sparsity_profiling=False, nm_decay=0.0015, num_feats=500, num_classes=3, num_nodes=19717)
+--------------------
+| # of train set : 60
+| # of val set   : 500
+| # of test set  : 1000
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(500, 192)
+    (1): GCNConv(192, 192)
+    (2): GCNConv(192, 3)
+  )
+  (layers_bn): ModuleList()
+  (dropout): Dropout(p=0, inplace=False)
+)
+/artic/h-ito/BingoGCN/__outputs__/SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF/dump..SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF.pth
+best acc: 0.76
+--------------------
+| # of train set : 60
+| # of val set   : 500
+| # of test set  : 1000
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(500, 192)
+    (1): GCNConv(192, 192)
+    (2): GCNConv(192, 3)
+  )
+  (layers_bn): ModuleList()
+  (dropout): Dropout(p=0, inplace=False)
+)
+/artic/h-ito/BingoGCN/__outputs__/SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF/dump..SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF.pth
+best acc: 0.762
+--------------------
+| # of train set : 60
+| # of val set   : 500
+| # of test set  : 1000
+--------------------
+GCN(
+  (layers_GCN): ModuleList(
+    (0): GCNConv(500, 192)
+    (1): GCNConv(192, 192)
+    (2): GCNConv(192, 3)
+  )
+  (layers_bn): ModuleList()
+  (dropout): Dropout(p=0, inplace=False)
+)
+/artic/h-ito/BingoGCN/__outputs__/SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF/dump..SLT_structured_exp2_sparsity_GCN_HD192_Pubmed_Msup_L3_M16_S1875_--unstructured_for_last_layer_initsigned_constant_SF.pth
+best acc: 0.77
+acc mean: 0.7639999999999999  acc std: 0.0043204937989385775 ece mean: 0.0 ece std 0.0
+End time: 2025-03-28 23:54:59
+Duration: 0:02:32.006714

@@ -1,0 +1,887 @@
+Start time: 2025-03-28 22:40:15
+Namespace(num_layers=3, epochs=200, dim_hidden=64, repeat_times=3, linear_sparsity=0.5625, train_mode='score_only', rerand_freq=0, exp_name='Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625', weight_l1=0.0, sampling=None, samplingtype=None, sparse_decay=True, attack=None, auroc=False, attack_eps=0, dataset='ogbg-molbace', random_seed=None, resume=False, cuda=True, type_model='GCN_graph_UGTs', dropout=0.0, lr=0.01, weight_decay=0.0005, transductive=True, activation='relu', type_norm='batch', command='train', force_restart=False, seed_by_time=True, print_train_loss=False, num_gpus=1, output_dir='__outputs__', sync_dir='__sync__', save_best_model=True, optimizer='Adam', scheduler='CustomCosineLR', warm_epochs=0, finetuning_epochs=0, finetuning_lr=None, lr_milestones=[900, 1000, 1100], checkpoint_epochs=[], multisteplr_gamma=0.1, learning_framework='GraphLevelLearning', bn_track_running_stats=True, bn_affine=True, bn_momentum=0.1, init_mode='xor16_offset', init_mode_mask='kaiming_uniform', init_mode_linear=None, init_scale=1.0, init_scale_score=1.0, heads=1, sparsity_list=[0.5625, 0.708333, 0.854167], num_mask=3, enable_mask=True, enable_abs_comp=True, validate=False, pretrained_path=None, prunedw_path=None, enable_sw_mm=False, BN_GIN=False, evatime=False, drawadj=False, evanum=50, METIS=False, spadj=False, adjsparsity_ratio=0.0, enable_feat_pruning=False, featsparsity_ratio=0.0, enable_node_pruning=False, x_pruning_layer=0, regular_weight_pruning=None, num_of_weight_blocks=1, global_th_for_rowbyrow=False, download_prunedw=False, gra_part=False, no_edge_weight=False, sparse_tensor=False, original_edge_weight=False, only_train_data=False, flowgnn_debug=False, nmsparsity=True, M=16, unstructured_for_last_layer=False, xor_seed_using_instance_number=False, outgoing_centroids=False, folded_layer=0, BN_track_running_stats=True, folded_SM=False, half_folded=False, batch_size=64, elastic_net=False, elastic_lambda=5e-08, l1_ratio=0.5, no_norm=False, adp=False, SLT_Bonder=False, SLTAtom=True, SLTBond=True, SLTRoot=False, SLTAtom_ini='xor16_atom', SLTBond_ini='xor16_bond', SLTRoot_ini='default', dense_for_last_layer=True, local_pruning=False, local_sparsity_list=None, inference_time=False, sparsity_profiling=False, nm_decay=0.0001, num_feats=9, num_classes=2)
+GCN_graph_UGTs(
+  (convs): ModuleList(
+    (0): Graphlevel_GCNConv(64, 64)
+    (1): Graphlevel_GCNConv(64, 64)
+    (2): Graphlevel_GCNConv(64, 64)
+  )
+  (atom_encoder): SLT_AtomEncoder(
+    (atom_embedding_list): ModuleList(
+      (0): Embedding(119, 64)
+      (1): Embedding(5, 64)
+      (2): Embedding(12, 64)
+      (3): Embedding(12, 64)
+      (4): Embedding(10, 64)
+      (5): Embedding(6, 64)
+      (6): Embedding(6, 64)
+      (7): Embedding(2, 64)
+      (8): Embedding(2, 64)
+    )
+    (weight_scores_list): ParameterList(
+        (0): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (1): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (2): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (3): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (4): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (5): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (6): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (7): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (8): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+    )
+  )
+  (batch_norms): ModuleList(
+    (0): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (graph_pred_linear): Linear(in_features=64, out_features=1, bias=True)
+)
+Name: convs.0.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.0.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.1.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.2.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.atom_embedding_list.0.weight, Shape: torch.Size([119, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.1.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.2.weight, Shape: torch.Size([12, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.3.weight, Shape: torch.Size([12, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.4.weight, Shape: torch.Size([10, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.5.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.6.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.7.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.8.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: atom_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.3, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.4, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.5, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.6, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.7, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.8, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: batch_norms.0.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.0.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.1.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.1.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.2.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.2.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: graph_pred_linear.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: graph_pred_linear.bias, Shape: torch.Size([1]), Requires Grad: True
+/artic/h-ito/BingoGCN/__outputs__/Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625/dump..Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625.pth
+0 train_acc 0.26888698630136987
+1 train_acc 0.596033105022831
+2 train_acc 0.5462328767123288
+3 train_acc 0.5121061643835616
+4 train_acc 0.4806221461187215
+5 train_acc 0.4530365296803653
+6 train_acc 0.4351940639269406
+7 train_acc 0.43497431506849316
+8 train_acc 0.439226598173516
+9 train_acc 0.41420091324200914
+10 train_acc 0.4267665525114155
+11 train_acc 0.42397545662100455
+12 train_acc 0.43757420091324195
+13 train_acc 0.41650684931506854
+14 train_acc 0.4149800228310503
+15 train_acc 0.4181164383561644
+16 train_acc 0.42019977168949774
+17 train_acc 0.4280907534246575
+18 train_acc 0.3870005707762557
+19 train_acc 0.40251141552511416
+20 train_acc 0.4001312785388128
+21 train_acc 0.4107505707762557
+22 train_acc 0.389814497716895
+23 train_acc 0.37699200913242015
+24 train_acc 0.3853952625570776
+25 train_acc 0.37131278538812784
+26 train_acc 0.36378995433789957
+27 train_acc 0.387574200913242
+28 train_acc 0.37916381278538813
+29 train_acc 0.3604123858447489
+30 train_acc 0.3862642694063927
+31 train_acc 0.3980565068493151
+32 train_acc 0.40148116438356163
+33 train_acc 0.36686929223744297
+34 train_acc 0.38113869863013694
+35 train_acc 0.36537956621004564
+36 train_acc 0.35835616438356166
+37 train_acc 0.3903553082191781
+38 train_acc 0.38061929223744295
+39 train_acc 0.3932976598173516
+40 train_acc 0.383972602739726
+41 train_acc 0.3731349885844749
+42 train_acc 0.38931792237442925
+43 train_acc 0.40816495433789957
+44 train_acc 0.3967080479452055
+45 train_acc 0.39296518264840186
+46 train_acc 0.3874757420091325
+47 train_acc 0.36650256849315066
+48 train_acc 0.384650399543379
+49 train_acc 0.41724029680365304
+50 train_acc 0.3866695205479452
+51 train_acc 0.4024800228310502
+52 train_acc 0.3832634132420091
+53 train_acc 0.3923373287671233
+54 train_acc 0.39887271689497716
+55 train_acc 0.3610388127853881
+56 train_acc 0.3676198630136986
+57 train_acc 0.39209474885844753
+58 train_acc 0.35962328767123286
+59 train_acc 0.3638955479452055
+60 train_acc 0.3748687214611872
+61 train_acc 0.3674343607305936
+62 train_acc 0.3785473744292237
+63 train_acc 0.3726255707762557
+64 train_acc 0.3676398401826484
+65 train_acc 0.35708333333333336
+66 train_acc 0.3886643835616438
+67 train_acc 0.36494149543378995
+68 train_acc 0.3668150684931507
+69 train_acc 0.3722973744292237
+70 train_acc 0.36029965753424653
+71 train_acc 0.3722146118721461
+72 train_acc 0.38195205479452055
+73 train_acc 0.3617123287671232
+74 train_acc 0.35707477168949775
+75 train_acc 0.38575342465753426
+76 train_acc 0.3636058789954338
+77 train_acc 0.37396118721461186
+78 train_acc 0.40424372146118726
+79 train_acc 0.39130422374429225
+80 train_acc 0.3884646118721461
+81 train_acc 0.3817836757990868
+82 train_acc 0.3842009132420091
+83 train_acc 0.3988113584474886
+84 train_acc 0.3714554794520548
+85 train_acc 0.40729737442922376
+86 train_acc 0.37711472602739726
+87 train_acc 0.36112157534246575
+88 train_acc 0.3894206621004566
+89 train_acc 0.41678652968036534
+90 train_acc 0.38731164383561645
+91 train_acc 0.3675913242009132
+92 train_acc 0.36628567351598174
+93 train_acc 0.40215182648401826
+94 train_acc 0.41575057077625566
+95 train_acc 0.3958076484018264
+96 train_acc 0.4126740867579909
+97 train_acc 0.4120519406392694
+98 train_acc 0.3528110730593607
+99 train_acc 0.3746289954337899
+100 train_acc 0.39309646118721464 val_acc 0.3974358974358974 test_acc 0.31629281864023656
+101 train_acc 0.3591038812785388 val_acc 0.5893772893772894 test_acc 0.6200660754651365
+102 train_acc 0.3834118150684932 val_acc 0.6164835164835165 test_acc 0.6484089723526343
+103 train_acc 0.37112442922374433 val_acc 0.44175824175824174 test_acc 0.6484089723526343
+104 train_acc 0.367023401826484 val_acc 0.5029304029304029 test_acc 0.6484089723526343
+105 train_acc 0.35575913242009133 val_acc 0.635897435897436 test_acc 0.6484089723526343
+106 train_acc 0.3514640410958904 val_acc 0.5820512820512821 test_acc 0.6484089723526343
+107 train_acc 0.3725856164383562 val_acc 0.5608058608058608 test_acc 0.6484089723526343
+108 train_acc 0.36250000000000004 val_acc 0.5655677655677656 test_acc 0.6484089723526343
+109 train_acc 0.37437785388127853 val_acc 0.5978021978021979 test_acc 0.6484089723526343
+110 train_acc 0.3732305936073059 val_acc 0.5787545787545788 test_acc 0.6484089723526343
+111 train_acc 0.37143835616438353 val_acc 0.552014652014652 test_acc 0.6484089723526343
+112 train_acc 0.394380707762557 val_acc 0.5351648351648352 test_acc 0.6484089723526343
+113 train_acc 0.37503710045662103 val_acc 0.5036630036630036 test_acc 0.6484089723526343
+114 train_acc 0.3741010273972603 val_acc 0.4087912087912088 test_acc 0.6484089723526343
+115 train_acc 0.39556506849315065 val_acc 0.5725274725274725 test_acc 0.6484089723526343
+116 train_acc 0.3709246575342466 val_acc 0.5644688644688645 test_acc 0.6484089723526343
+117 train_acc 0.3792793949771689 val_acc 0.6054945054945056 test_acc 0.6484089723526343
+118 train_acc 0.3773715753424658 val_acc 0.5882783882783883 test_acc 0.6484089723526343
+119 train_acc 0.3784760273972603 val_acc 0.5945054945054946 test_acc 0.6484089723526343
+120 train_acc 0.3815054223744292 val_acc 0.5886446886446888 test_acc 0.6484089723526343
+121 train_acc 0.38708618721461185 val_acc 0.41758241758241765 test_acc 0.6484089723526343
+122 train_acc 0.3751755136986301 val_acc 0.5816849816849817 test_acc 0.6484089723526343
+123 train_acc 0.36817351598173514 val_acc 0.5948717948717949 test_acc 0.6484089723526343
+124 train_acc 0.3721789383561644 val_acc 0.5652014652014653 test_acc 0.6484089723526343
+125 train_acc 0.38154965753424663 val_acc 0.5516483516483517 test_acc 0.6484089723526343
+126 train_acc 0.3795490867579908 val_acc 0.47399267399267403 test_acc 0.6484089723526343
+127 train_acc 0.3700613584474886 val_acc 0.615018315018315 test_acc 0.6484089723526343
+128 train_acc 0.38180650684931505 val_acc 0.387912087912088 test_acc 0.6484089723526343
+129 train_acc 0.38163384703196346 val_acc 0.5706959706959708 test_acc 0.6484089723526343
+130 train_acc 0.3846118721461187 val_acc 0.5908424908424909 test_acc 0.6484089723526343
+131 train_acc 0.3835416666666666 val_acc 0.5860805860805861 test_acc 0.6484089723526343
+132 train_acc 0.3903667237442922 val_acc 0.5728937728937729 test_acc 0.6484089723526343
+133 train_acc 0.3755165525114155 val_acc 0.5450549450549451 test_acc 0.6484089723526343
+134 train_acc 0.3917151826484019 val_acc 0.5333333333333333 test_acc 0.6484089723526343
+135 train_acc 0.3833675799086758 val_acc 0.5780219780219781 test_acc 0.6484089723526343
+136 train_acc 0.3921760844748859 val_acc 0.36703296703296706 test_acc 0.6484089723526343
+137 train_acc 0.39780393835616434 val_acc 0.5772893772893772 test_acc 0.6484089723526343
+138 train_acc 0.3848373287671233 val_acc 0.580952380952381 test_acc 0.6484089723526343
+139 train_acc 0.39688498858447485 val_acc 0.5684981684981685 test_acc 0.6484089723526343
+140 train_acc 0.38199486301369867 val_acc 0.4915750915750916 test_acc 0.6484089723526343
+141 train_acc 0.38835045662100454 val_acc 0.42930402930402933 test_acc 0.6484089723526343
+142 train_acc 0.40903538812785384 val_acc 0.5663003663003663 test_acc 0.6484089723526343
+143 train_acc 0.3980393835616438 val_acc 0.6010989010989011 test_acc 0.6484089723526343
+144 train_acc 0.384597602739726 val_acc 0.6146520146520146 test_acc 0.6484089723526343
+145 train_acc 0.4068236301369863 val_acc 0.6087912087912088 test_acc 0.6484089723526343
+146 train_acc 0.3867665525114155 val_acc 0.547985347985348 test_acc 0.6484089723526343
+147 train_acc 0.3888284817351598 val_acc 0.5824175824175825 test_acc 0.6484089723526343
+148 train_acc 0.39817636986301375 val_acc 0.573992673992674 test_acc 0.6484089723526343
+149 train_acc 0.3805593607305936 val_acc 0.5128205128205129 test_acc 0.6484089723526343
+150 train_acc 0.37846175799086756 val_acc 0.557142857142857 test_acc 0.6484089723526343
+151 train_acc 0.37691780821917803 val_acc 0.5230769230769231 test_acc 0.6484089723526343
+152 train_acc 0.3871974885844749 val_acc 0.5615384615384615 test_acc 0.6484089723526343
+153 train_acc 0.3797317351598174 val_acc 0.5721611721611721 test_acc 0.6484089723526343
+154 train_acc 0.3911700913242009 val_acc 0.46886446886446886 test_acc 0.6484089723526343
+155 train_acc 0.385958904109589 val_acc 0.5739926739926741 test_acc 0.6484089723526343
+156 train_acc 0.4077425799086758 val_acc 0.5322344322344322 test_acc 0.6484089723526343
+157 train_acc 0.40577625570776255 val_acc 0.6435897435897436 test_acc 0.6932707355242567
+158 train_acc 0.3839897260273972 val_acc 0.489010989010989 test_acc 0.6932707355242567
+159 train_acc 0.38980308219178084 val_acc 0.5311355311355312 test_acc 0.6932707355242567
+160 train_acc 0.36260702054794525 val_acc 0.5725274725274725 test_acc 0.6932707355242567
+161 train_acc 0.3895576484018265 val_acc 0.5813186813186814 test_acc 0.6932707355242567
+162 train_acc 0.39352454337899545 val_acc 0.45421245421245426 test_acc 0.6932707355242567
+163 train_acc 0.39684360730593604 val_acc 0.5739926739926741 test_acc 0.6932707355242567
+164 train_acc 0.37954052511415526 val_acc 0.6095238095238096 test_acc 0.6932707355242567
+165 train_acc 0.3919235159817352 val_acc 0.4915750915750916 test_acc 0.6932707355242567
+166 train_acc 0.40015696347031965 val_acc 0.6014652014652015 test_acc 0.6932707355242567
+167 train_acc 0.40142979452054794 val_acc 0.5234432234432234 test_acc 0.6932707355242567
+168 train_acc 0.3923102168949772 val_acc 0.5761904761904763 test_acc 0.6932707355242567
+169 train_acc 0.39293664383561644 val_acc 0.5611721611721612 test_acc 0.6932707355242567
+170 train_acc 0.3879851598173516 val_acc 0.5791208791208792 test_acc 0.6932707355242567
+171 train_acc 0.38114440639269404 val_acc 0.5582417582417583 test_acc 0.6932707355242567
+172 train_acc 0.3949343607305936 val_acc 0.5725274725274726 test_acc 0.6932707355242567
+173 train_acc 0.3919691780821918 val_acc 0.49853479853479854 test_acc 0.6932707355242567
+174 train_acc 0.40957762557077626 val_acc 0.5706959706959707 test_acc 0.6932707355242567
+175 train_acc 0.3989611872146118 val_acc 0.5915750915750916 test_acc 0.6932707355242567
+176 train_acc 0.39361872146118726 val_acc 0.5820512820512821 test_acc 0.6932707355242567
+177 train_acc 0.3944035388127854 val_acc 0.5732600732600732 test_acc 0.6932707355242567
+178 train_acc 0.40931792237442927 val_acc 0.571062271062271 test_acc 0.6932707355242567
+179 train_acc 0.3943436073059361 val_acc 0.5747252747252747 test_acc 0.6932707355242567
+180 train_acc 0.3958219178082192 val_acc 0.573992673992674 test_acc 0.6932707355242567
+181 train_acc 0.40022260273972604 val_acc 0.5758241758241759 test_acc 0.6932707355242567
+182 train_acc 0.4077283105022831 val_acc 0.5677655677655677 test_acc 0.6932707355242567
+183 train_acc 0.4100656392694063 val_acc 0.5725274725274725 test_acc 0.6932707355242567
+184 train_acc 0.40185502283105023 val_acc 0.5483516483516483 test_acc 0.6932707355242567
+185 train_acc 0.39849600456621004 val_acc 0.5919413919413921 test_acc 0.6932707355242567
+186 train_acc 0.393601598173516 val_acc 0.5721611721611721 test_acc 0.6932707355242567
+187 train_acc 0.3843407534246575 val_acc 0.5868131868131867 test_acc 0.6932707355242567
+188 train_acc 0.38801655251141554 val_acc 0.5490842490842491 test_acc 0.6932707355242567
+189 train_acc 0.4091695205479452 val_acc 0.5736263736263736 test_acc 0.6932707355242567
+190 train_acc 0.3806478310502283 val_acc 0.6087912087912088 test_acc 0.6932707355242567
+191 train_acc 0.38322203196347027 val_acc 0.5336996336996337 test_acc 0.6932707355242567
+192 train_acc 0.3952482876712329 val_acc 0.5743589743589744 test_acc 0.6932707355242567
+193 train_acc 0.3808361872146119 val_acc 0.5593406593406594 test_acc 0.6932707355242567
+194 train_acc 0.40834474885844746 val_acc 0.575091575091575 test_acc 0.6932707355242567
+195 train_acc 0.39868436073059366 val_acc 0.5608058608058608 test_acc 0.6932707355242567
+196 train_acc 0.40372716894977173 val_acc 0.5761904761904761 test_acc 0.6932707355242567
+197 train_acc 0.39906107305936067 val_acc 0.5615384615384615 test_acc 0.6932707355242567
+198 train_acc 0.4044377853881278 val_acc 0.613919413919414 test_acc 0.6932707355242567
+199 train_acc 0.414078196347032 val_acc 0.6003663003663003 test_acc 0.6932707355242567
+Finished training!
+Best validation score: 0.6435897435897436
+Test score: 0.6932707355242567
+GCN_graph_UGTs(
+  (convs): ModuleList(
+    (0): Graphlevel_GCNConv(64, 64)
+    (1): Graphlevel_GCNConv(64, 64)
+    (2): Graphlevel_GCNConv(64, 64)
+  )
+  (atom_encoder): SLT_AtomEncoder(
+    (atom_embedding_list): ModuleList(
+      (0): Embedding(119, 64)
+      (1): Embedding(5, 64)
+      (2): Embedding(12, 64)
+      (3): Embedding(12, 64)
+      (4): Embedding(10, 64)
+      (5): Embedding(6, 64)
+      (6): Embedding(6, 64)
+      (7): Embedding(2, 64)
+      (8): Embedding(2, 64)
+    )
+    (weight_scores_list): ParameterList(
+        (0): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (1): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (2): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (3): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (4): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (5): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (6): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (7): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (8): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+    )
+  )
+  (batch_norms): ModuleList(
+    (0): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (graph_pred_linear): Linear(in_features=64, out_features=1, bias=True)
+)
+Name: convs.0.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.0.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.1.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.2.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.atom_embedding_list.0.weight, Shape: torch.Size([119, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.1.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.2.weight, Shape: torch.Size([12, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.3.weight, Shape: torch.Size([12, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.4.weight, Shape: torch.Size([10, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.5.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.6.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.7.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.8.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: atom_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.3, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.4, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.5, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.6, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.7, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.8, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: batch_norms.0.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.0.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.1.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.1.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.2.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.2.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: graph_pred_linear.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: graph_pred_linear.bias, Shape: torch.Size([1]), Requires Grad: True
+/artic/h-ito/BingoGCN/__outputs__/Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625/dump..Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625.pth
+0 train_acc 0.3007534246575343
+1 train_acc 0.604529109589041
+2 train_acc 0.5620861872146119
+3 train_acc 0.5248544520547945
+4 train_acc 0.484576198630137
+5 train_acc 0.4598473173515982
+6 train_acc 0.42709189497716893
+7 train_acc 0.44661244292237445
+8 train_acc 0.42625
+9 train_acc 0.440037100456621
+10 train_acc 0.44012842465753427
+11 train_acc 0.41360445205479457
+12 train_acc 0.39722602739726026
+13 train_acc 0.41271689497716896
+14 train_acc 0.4389697488584475
+15 train_acc 0.40550513698630136
+16 train_acc 0.3888470319634703
+17 train_acc 0.4266466894977169
+18 train_acc 0.4128924086757991
+19 train_acc 0.4033162100456621
+20 train_acc 0.41228595890410963
+21 train_acc 0.3957876712328767
+22 train_acc 0.43366438356164383
+23 train_acc 0.4079951484018265
+24 train_acc 0.40385559360730594
+25 train_acc 0.4061415525114155
+26 train_acc 0.405625
+27 train_acc 0.4021404109589041
+28 train_acc 0.39605022831050224
+29 train_acc 0.3865525114155251
+30 train_acc 0.3862186073059361
+31 train_acc 0.40916381278538816
+32 train_acc 0.385958904109589
+33 train_acc 0.40400114155251143
+34 train_acc 0.39545947488584476
+35 train_acc 0.37735159817351593
+36 train_acc 0.3774800228310502
+37 train_acc 0.4163584474885844
+38 train_acc 0.389263698630137
+39 train_acc 0.3994663242009132
+40 train_acc 0.41771118721461187
+41 train_acc 0.4232049086757991
+42 train_acc 0.40736729452054793
+43 train_acc 0.3969920091324201
+44 train_acc 0.378347602739726
+45 train_acc 0.3315667808219178
+46 train_acc 0.3584332191780822
+47 train_acc 0.3833675799086758
+48 train_acc 0.39364440639269405
+49 train_acc 0.3824001141552511
+50 train_acc 0.4046603881278539
+51 train_acc 0.39762271689497714
+52 train_acc 0.3953481735159817
+53 train_acc 0.3901227168949772
+54 train_acc 0.38587614155251143
+55 train_acc 0.3532562785388128
+56 train_acc 0.38765981735159816
+57 train_acc 0.41834474885844747
+58 train_acc 0.41318207762557074
+59 train_acc 0.40356735159817353
+60 train_acc 0.38483162100456625
+61 train_acc 0.38532534246575345
+62 train_acc 0.38621860730593605
+63 train_acc 0.39497716894977175
+64 train_acc 0.40214041095890407
+65 train_acc 0.4128624429223745
+66 train_acc 0.39189783105022835
+67 train_acc 0.38136415525114153
+68 train_acc 0.3897345890410959
+69 train_acc 0.3959860159817352
+70 train_acc 0.3994206621004566
+71 train_acc 0.37641980593607305
+72 train_acc 0.3559617579908676
+73 train_acc 0.4094320776255708
+74 train_acc 0.4067465753424657
+75 train_acc 0.4142694063926941
+76 train_acc 0.4116267123287671
+77 train_acc 0.40450342465753425
+78 train_acc 0.39442351598173514
+79 train_acc 0.39564783105022827
+80 train_acc 0.3926626712328767
+81 train_acc 0.4137385844748859
+82 train_acc 0.39087043378995434
+83 train_acc 0.38015410958904117
+84 train_acc 0.41641267123287673
+85 train_acc 0.4042351598173516
+86 train_acc 0.38885273972602735
+87 train_acc 0.40957477168949774
+88 train_acc 0.4018650114155251
+89 train_acc 0.38977168949771684
+90 train_acc 0.4011215753424658
+91 train_acc 0.40001997716894977
+92 train_acc 0.3464683219178082
+93 train_acc 0.3987514269406393
+94 train_acc 0.39705194063926946
+95 train_acc 0.3976769406392694
+96 train_acc 0.3890139840182649
+97 train_acc 0.38986015981735156
+98 train_acc 0.39875142694063925
+99 train_acc 0.40523401826484023
+100 train_acc 0.4158561643835616 val_acc 0.5901098901098901 test_acc 0.5685967657798643
+101 train_acc 0.37719463470319636 val_acc 0.5450549450549451 test_acc 0.5685967657798643
+102 train_acc 0.42075057077625566 val_acc 0.5835164835164836 test_acc 0.5685967657798643
+103 train_acc 0.3836729452054795 val_acc 0.5860805860805861 test_acc 0.5685967657798643
+104 train_acc 0.40595034246575346 val_acc 0.5941391941391941 test_acc 0.666318901060685
+105 train_acc 0.40881563926940634 val_acc 0.5728937728937729 test_acc 0.666318901060685
+106 train_acc 0.37732591324200915 val_acc 0.5736263736263736 test_acc 0.666318901060685
+107 train_acc 0.42462899543378996 val_acc 0.5692307692307692 test_acc 0.666318901060685
+108 train_acc 0.4047545662100457 val_acc 0.5428571428571429 test_acc 0.666318901060685
+109 train_acc 0.3993150684931506 val_acc 0.571062271062271 test_acc 0.666318901060685
+110 train_acc 0.420587899543379 val_acc 0.6168498168498169 test_acc 0.6823161189358372
+111 train_acc 0.40608162100456624 val_acc 0.5846153846153846 test_acc 0.6823161189358372
+112 train_acc 0.42983447488584475 val_acc 0.5857142857142857 test_acc 0.6823161189358372
+113 train_acc 0.4263299086757991 val_acc 0.5835164835164836 test_acc 0.6823161189358372
+114 train_acc 0.3972574200913242 val_acc 0.4824175824175824 test_acc 0.6823161189358372
+115 train_acc 0.3970091324200913 val_acc 0.5527472527472528 test_acc 0.6823161189358372
+116 train_acc 0.40198915525114154 val_acc 0.5714285714285715 test_acc 0.6823161189358372
+117 train_acc 0.4123958333333333 val_acc 0.4956043956043956 test_acc 0.6823161189358372
+118 train_acc 0.4078196347031963 val_acc 0.6223443223443224 test_acc 0.6823161189358372
+119 train_acc 0.4090268264840182 val_acc 0.5695970695970696 test_acc 0.6823161189358372
+120 train_acc 0.3729337899543379 val_acc 0.5406593406593407 test_acc 0.6823161189358372
+121 train_acc 0.37231735159817353 val_acc 0.5673992673992674 test_acc 0.6823161189358372
+122 train_acc 0.4052796803652968 val_acc 0.5336996336996337 test_acc 0.6823161189358372
+123 train_acc 0.38772260273972603 val_acc 0.5652014652014653 test_acc 0.6823161189358372
+124 train_acc 0.3765867579908676 val_acc 0.5846153846153846 test_acc 0.6823161189358372
+125 train_acc 0.3861629566210045 val_acc 0.5831501831501832 test_acc 0.6823161189358372
+126 train_acc 0.3822659817351598 val_acc 0.45238095238095244 test_acc 0.6823161189358372
+127 train_acc 0.37529394977168945 val_acc 0.5864468864468865 test_acc 0.6823161189358372
+128 train_acc 0.3785873287671233 val_acc 0.4223443223443224 test_acc 0.6823161189358372
+129 train_acc 0.38389269406392695 val_acc 0.5545787545787546 test_acc 0.6823161189358372
+130 train_acc 0.3752254566210046 val_acc 0.5813186813186814 test_acc 0.6823161189358372
+131 train_acc 0.3974229452054795 val_acc 0.5879120879120879 test_acc 0.6823161189358372
+132 train_acc 0.3912614155251142 val_acc 0.5776556776556777 test_acc 0.6823161189358372
+133 train_acc 0.39750856164383563 val_acc 0.5882783882783883 test_acc 0.6823161189358372
+134 train_acc 0.40843892694063927 val_acc 0.5743589743589744 test_acc 0.6823161189358372
+135 train_acc 0.4046489726027397 val_acc 0.4340659340659341 test_acc 0.6823161189358372
+136 train_acc 0.3919178082191781 val_acc 0.5875457875457876 test_acc 0.6823161189358372
+137 train_acc 0.37156107305936076 val_acc 0.47326007326007336 test_acc 0.6823161189358372
+138 train_acc 0.3779223744292237 val_acc 0.5761904761904763 test_acc 0.6823161189358372
+139 train_acc 0.37684646118721465 val_acc 0.580952380952381 test_acc 0.6823161189358372
+140 train_acc 0.37208904109589047 val_acc 0.5498168498168499 test_acc 0.6823161189358372
+141 train_acc 0.40557648401826485 val_acc 0.563003663003663 test_acc 0.6823161189358372
+142 train_acc 0.3818022260273973 val_acc 0.5901098901098901 test_acc 0.6823161189358372
+143 train_acc 0.39001997716894976 val_acc 0.5963369963369964 test_acc 0.6823161189358372
+144 train_acc 0.3661444063926941 val_acc 0.45347985347985353 test_acc 0.6823161189358372
+145 train_acc 0.3787171803652968 val_acc 0.578021978021978 test_acc 0.6823161189358372
+146 train_acc 0.37831906392694065 val_acc 0.5641025641025641 test_acc 0.6823161189358372
+147 train_acc 0.3872802511415525 val_acc 0.4278388278388279 test_acc 0.6823161189358372
+148 train_acc 0.38715753424657534 val_acc 0.41611721611721614 test_acc 0.6823161189358372
+149 train_acc 0.402462899543379 val_acc 0.6043956043956044 test_acc 0.6823161189358372
+150 train_acc 0.3757505707762557 val_acc 0.5164835164835165 test_acc 0.6823161189358372
+151 train_acc 0.38616723744292236 val_acc 0.6021978021978022 test_acc 0.6823161189358372
+152 train_acc 0.39740582191780827 val_acc 0.5842490842490843 test_acc 0.6823161189358372
+153 train_acc 0.38968036529680367 val_acc 0.5945054945054945 test_acc 0.6823161189358372
+154 train_acc 0.40178652968036527 val_acc 0.613919413919414 test_acc 0.6823161189358372
+155 train_acc 0.37323344748858445 val_acc 0.5728937728937729 test_acc 0.6823161189358372
+156 train_acc 0.38903253424657536 val_acc 0.5282051282051282 test_acc 0.6823161189358372
+157 train_acc 0.37861586757990867 val_acc 0.5871794871794872 test_acc 0.6823161189358372
+158 train_acc 0.40367009132420095 val_acc 0.6384615384615385 test_acc 0.6823161189358372
+159 train_acc 0.37931078767123283 val_acc 0.5992673992673992 test_acc 0.6823161189358372
+160 train_acc 0.4086929223744292 val_acc 0.5835164835164836 test_acc 0.6823161189358372
+161 train_acc 0.4000399543378996 val_acc 0.5853479853479854 test_acc 0.6823161189358372
+162 train_acc 0.39556792237442917 val_acc 0.5879120879120879 test_acc 0.6823161189358372
+163 train_acc 0.38535102739726035 val_acc 0.5842490842490843 test_acc 0.6823161189358372
+164 train_acc 0.39196204337899543 val_acc 0.5897435897435898 test_acc 0.6823161189358372
+165 train_acc 0.38699771689497714 val_acc 0.45384615384615384 test_acc 0.6823161189358372
+166 train_acc 0.4021232876712329 val_acc 0.5831501831501831 test_acc 0.6823161189358372
+167 train_acc 0.4097888127853881 val_acc 0.5538461538461539 test_acc 0.6823161189358372
+168 train_acc 0.38640696347031966 val_acc 0.4739926739926741 test_acc 0.6823161189358372
+169 train_acc 0.38584332191780824 val_acc 0.5857142857142857 test_acc 0.6823161189358372
+170 train_acc 0.38557933789954335 val_acc 0.6000000000000001 test_acc 0.6823161189358372
+171 train_acc 0.39830479452054796 val_acc 0.5956043956043956 test_acc 0.6823161189358372
+172 train_acc 0.3909731735159817 val_acc 0.5380952380952381 test_acc 0.6823161189358372
+173 train_acc 0.3840396689497717 val_acc 0.5633699633699634 test_acc 0.6823161189358372
+174 train_acc 0.39096461187214615 val_acc 0.5868131868131868 test_acc 0.6823161189358372
+175 train_acc 0.4001055936073059 val_acc 0.5567765567765568 test_acc 0.6823161189358372
+176 train_acc 0.3996489726027398 val_acc 0.5586080586080586 test_acc 0.6823161189358372
+177 train_acc 0.3967908105022831 val_acc 0.5915750915750917 test_acc 0.6823161189358372
+178 train_acc 0.3932648401826484 val_acc 0.5560439560439561 test_acc 0.6823161189358372
+179 train_acc 0.39793664383561644 val_acc 0.5344322344322344 test_acc 0.6823161189358372
+180 train_acc 0.3960559360730594 val_acc 0.5164835164835165 test_acc 0.6823161189358372
+181 train_acc 0.39586615296803657 val_acc 0.5355311355311356 test_acc 0.6823161189358372
+182 train_acc 0.40750856164383564 val_acc 0.5333333333333333 test_acc 0.6823161189358372
+183 train_acc 0.3882819634703196 val_acc 0.5882783882783883 test_acc 0.6823161189358372
+184 train_acc 0.38976027397260277 val_acc 0.5904761904761905 test_acc 0.6823161189358372
+185 train_acc 0.4116395547945206 val_acc 0.5864468864468865 test_acc 0.6823161189358372
+186 train_acc 0.39916095890410963 val_acc 0.565934065934066 test_acc 0.6823161189358372
+187 train_acc 0.40224885844748853 val_acc 0.584981684981685 test_acc 0.6823161189358372
+188 train_acc 0.3850513698630137 val_acc 0.6146520146520147 test_acc 0.6823161189358372
+189 train_acc 0.39416666666666667 val_acc 0.5996336996336997 test_acc 0.6823161189358372
+190 train_acc 0.41 val_acc 0.5747252747252747 test_acc 0.6823161189358372
+191 train_acc 0.396107305936073 val_acc 0.40879120879120884 test_acc 0.6823161189358372
+192 train_acc 0.403162100456621 val_acc 0.5648351648351648 test_acc 0.6823161189358372
+193 train_acc 0.41359018264840186 val_acc 0.6098901098901098 test_acc 0.6823161189358372
+194 train_acc 0.40241723744292235 val_acc 0.5417582417582418 test_acc 0.6823161189358372
+195 train_acc 0.4123772831050228 val_acc 0.6084249084249085 test_acc 0.6823161189358372
+196 train_acc 0.40479166666666666 val_acc 0.5835164835164836 test_acc 0.6823161189358372
+197 train_acc 0.4199457762557078 val_acc 0.5978021978021979 test_acc 0.6823161189358372
+198 train_acc 0.41064212328767125 val_acc 0.5978021978021978 test_acc 0.6823161189358372
+199 train_acc 0.39774543378995436 val_acc 0.5721611721611721 test_acc 0.6823161189358372
+Finished training!
+Best validation score: 0.6168498168498169
+Test score: 0.6823161189358372
+GCN_graph_UGTs(
+  (convs): ModuleList(
+    (0): Graphlevel_GCNConv(64, 64)
+    (1): Graphlevel_GCNConv(64, 64)
+    (2): Graphlevel_GCNConv(64, 64)
+  )
+  (atom_encoder): SLT_AtomEncoder(
+    (atom_embedding_list): ModuleList(
+      (0): Embedding(119, 64)
+      (1): Embedding(5, 64)
+      (2): Embedding(12, 64)
+      (3): Embedding(12, 64)
+      (4): Embedding(10, 64)
+      (5): Embedding(6, 64)
+      (6): Embedding(6, 64)
+      (7): Embedding(2, 64)
+      (8): Embedding(2, 64)
+    )
+    (weight_scores_list): ParameterList(
+        (0): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (1): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (2): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (3): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (4): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (5): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (6): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (7): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+        (8): Parameter containing: [torch.float32 of size 1x64 (GPU 0)]
+    )
+  )
+  (batch_norms): ModuleList(
+    (0): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (graph_pred_linear): Linear(in_features=64, out_features=1, bias=True)
+)
+Name: convs.0.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.0.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.0.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.0.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.1.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.1.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.1.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.lin.weight, Shape: torch.Size([64, 64]), Requires Grad: False
+Name: convs.2.lin.weight_score, Shape: torch.Size([64, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.bond_embedding_list.0.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.bond_embedding_list.1.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.bond_embedding_list.2.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: convs.2.bond_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.bond_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: convs.2.root_emb.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.atom_embedding_list.0.weight, Shape: torch.Size([119, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.1.weight, Shape: torch.Size([5, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.2.weight, Shape: torch.Size([12, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.3.weight, Shape: torch.Size([12, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.4.weight, Shape: torch.Size([10, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.5.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.6.weight, Shape: torch.Size([6, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.7.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: atom_encoder.atom_embedding_list.8.weight, Shape: torch.Size([2, 64]), Requires Grad: False
+Name: atom_encoder.weight_scores_list.0, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.1, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.2, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.3, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.4, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.5, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.6, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.7, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: atom_encoder.weight_scores_list.8, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: batch_norms.0.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.0.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.1.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.1.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.2.weight, Shape: torch.Size([64]), Requires Grad: True
+Name: batch_norms.2.bias, Shape: torch.Size([64]), Requires Grad: True
+Name: graph_pred_linear.weight, Shape: torch.Size([1, 64]), Requires Grad: True
+Name: graph_pred_linear.bias, Shape: torch.Size([1]), Requires Grad: True
+/artic/h-ito/BingoGCN/__outputs__/Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625/dump..Graph-level-SLT_structured_exp2_sparsity_GCN_graph_UGTs_HD64_ogbg-molbace_Msup_L3_M16_S5625.pth
+0 train_acc 0.24368721461187215
+1 train_acc 0.5748016552511416
+2 train_acc 0.5233590182648402
+3 train_acc 0.4850399543378995
+4 train_acc 0.47431792237442927
+5 train_acc 0.43976740867579905
+6 train_acc 0.4123301940639269
+7 train_acc 0.4206506849315068
+8 train_acc 0.42876712328767125
+9 train_acc 0.4131164383561644
+10 train_acc 0.4222203196347032
+11 train_acc 0.4288013698630137
+12 train_acc 0.4135530821917808
+13 train_acc 0.3918935502283105
+14 train_acc 0.3799743150684931
+15 train_acc 0.3747460045662101
+16 train_acc 0.4151769406392694
+17 train_acc 0.3912656963470319
+18 train_acc 0.4009874429223745
+19 train_acc 0.3757120433789954
+20 train_acc 0.38007705479452053
+21 train_acc 0.3716509703196347
+22 train_acc 0.3767865296803653
+23 train_acc 0.3628310502283105
+24 train_acc 0.36660673515981734
+25 train_acc 0.3719235159817352
+26 train_acc 0.3658818493150685
+27 train_acc 0.34700057077625573
+28 train_acc 0.3742180365296804
+29 train_acc 0.3808561643835617
+30 train_acc 0.35797374429223744
+31 train_acc 0.39264840182648403
+32 train_acc 0.3785559360730593
+33 train_acc 0.3902682648401826
+34 train_acc 0.36333904109589044
+35 train_acc 0.40458618721461187
+36 train_acc 0.3707933789954338
+37 train_acc 0.38553938356164386
+38 train_acc 0.3759061073059361
+39 train_acc 0.3828396118721461
+40 train_acc 0.40222031963470317
+41 train_acc 0.37733447488584476
+42 train_acc 0.4068607305936073
+43 train_acc 0.3807191780821918
+44 train_acc 0.3386843607305936
+45 train_acc 0.32716894977168953
+46 train_acc 0.3687186073059361
+47 train_acc 0.3711044520547945
+48 train_acc 0.3572716894977169
+49 train_acc 0.38184360730593603
+50 train_acc 0.34626569634703197
+51 train_acc 0.34974600456621
+52 train_acc 0.3655978881278539
+53 train_acc 0.3817294520547945
+54 train_acc 0.36580622146118724
+55 train_acc 0.37609874429223744
+56 train_acc 0.39297517123287673
+57 train_acc 0.3506164383561644
+58 train_acc 0.3505522260273972
+59 train_acc 0.3657034817351598
+60 train_acc 0.369263698630137
+61 train_acc 0.3764897260273973
+62 train_acc 0.3604937214611872
+63 train_acc 0.38315639269406393
+64 train_acc 0.393787100456621
+65 train_acc 0.3846375570776256
+66 train_acc 0.38558219178082187
+67 train_acc 0.3674600456621005
+68 train_acc 0.38180650684931505
+69 train_acc 0.37397260273972605
+70 train_acc 0.3821232876712328
+71 train_acc 0.36791666666666667
+72 train_acc 0.37154537671232873
+73 train_acc 0.37826484018264844
+74 train_acc 0.3864954337899543
+75 train_acc 0.3894492009132421
+76 train_acc 0.3878353310502283
+77 train_acc 0.3706421232876712
+78 train_acc 0.38961329908675796
+79 train_acc 0.38410958904109593
+80 train_acc 0.3934075342465754
+81 train_acc 0.4082391552511416
+82 train_acc 0.39923230593607306
+83 train_acc 0.37960616438356165
+84 train_acc 0.37596461187214614
+85 train_acc 0.39912385844748866
+86 train_acc 0.3841324200913242
+87 train_acc 0.3851455479452055
+88 train_acc 0.39412956621004563
+89 train_acc 0.3910388127853881
+90 train_acc 0.4079295091324201
+91 train_acc 0.3889611872146118
+92 train_acc 0.3776027397260274
+93 train_acc 0.3771974885844749
+94 train_acc 0.3741095890410959
+95 train_acc 0.38657819634703194
+96 train_acc 0.39636415525114155
+97 train_acc 0.3890353881278539
+98 train_acc 0.38400114155251136
+99 train_acc 0.3888356164383562
+100 train_acc 0.40264554794520546 val_acc 0.578021978021978 test_acc 0.6270213875847679
+101 train_acc 0.41386986301369866 val_acc 0.6212454212454213 test_acc 0.6750130412102242
+102 train_acc 0.40511130136986306 val_acc 0.5934065934065935 test_acc 0.6750130412102242
+103 train_acc 0.4007734018264841 val_acc 0.42893772893772897 test_acc 0.6750130412102242
+104 train_acc 0.38229737442922374 val_acc 0.6509157509157509 test_acc 0.6750130412102242
+105 train_acc 0.3971204337899544 val_acc 0.5761904761904761 test_acc 0.6750130412102242
+106 train_acc 0.3791980593607306 val_acc 0.5644688644688645 test_acc 0.6750130412102242
+107 train_acc 0.37889269406392695 val_acc 0.5714285714285715 test_acc 0.6750130412102242
+108 train_acc 0.3918093607305936 val_acc 0.5915750915750916 test_acc 0.6750130412102242
+109 train_acc 0.39800228310502284 val_acc 0.6040293040293041 test_acc 0.6750130412102242
+110 train_acc 0.4030607876712329 val_acc 0.5846153846153846 test_acc 0.6750130412102242
+111 train_acc 0.38718464611872144 val_acc 0.576923076923077 test_acc 0.6750130412102242
+112 train_acc 0.41555079908675796 val_acc 0.6278388278388278 test_acc 0.6750130412102242
+113 train_acc 0.4087314497716895 val_acc 0.5604395604395604 test_acc 0.6750130412102242
+114 train_acc 0.38987014840182654 val_acc 0.5985347985347985 test_acc 0.6750130412102242
+115 train_acc 0.40230308219178085 val_acc 0.591941391941392 test_acc 0.6750130412102242
+116 train_acc 0.41665810502283107 val_acc 0.5622710622710624 test_acc 0.6750130412102242
+117 train_acc 0.4082248858447488 val_acc 0.578021978021978 test_acc 0.6750130412102242
+118 train_acc 0.39970319634703194 val_acc 0.5967032967032967 test_acc 0.6750130412102242
+119 train_acc 0.3935530821917808 val_acc 0.6007326007326007 test_acc 0.6750130412102242
+120 train_acc 0.40087043378995435 val_acc 0.5945054945054945 test_acc 0.6750130412102242
+121 train_acc 0.40173801369863016 val_acc 0.6018315018315018 test_acc 0.6750130412102242
+122 train_acc 0.384925799086758 val_acc 0.6120879120879121 test_acc 0.6750130412102242
+123 train_acc 0.3863327625570776 val_acc 0.5725274725274726 test_acc 0.6750130412102242
+124 train_acc 0.3898401826484018 val_acc 0.5205128205128206 test_acc 0.6750130412102242
+125 train_acc 0.3908219178082192 val_acc 0.6146520146520147 test_acc 0.6750130412102242
+126 train_acc 0.4069306506849315 val_acc 0.43626373626373627 test_acc 0.6750130412102242
+127 train_acc 0.406472602739726 val_acc 0.5930402930402932 test_acc 0.6750130412102242
+128 train_acc 0.40949771689497716 val_acc 0.5388278388278389 test_acc 0.6750130412102242
+129 train_acc 0.3971946347031964 val_acc 0.6318681318681318 test_acc 0.6750130412102242
+130 train_acc 0.39323059360730594 val_acc 0.6183150183150183 test_acc 0.6750130412102242
+131 train_acc 0.39006563926940635 val_acc 0.5633699633699634 test_acc 0.6750130412102242
+132 train_acc 0.39912385844748854 val_acc 0.5886446886446887 test_acc 0.6750130412102242
+133 train_acc 0.39672374429223745 val_acc 0.6373626373626373 test_acc 0.6750130412102242
+134 train_acc 0.40537100456621006 val_acc 0.6347985347985348 test_acc 0.6750130412102242
+135 train_acc 0.41441780821917806 val_acc 0.47728937728937737 test_acc 0.6750130412102242
+136 train_acc 0.3951312785388128 val_acc 0.45641025641025634 test_acc 0.6750130412102242
+137 train_acc 0.39112442922374435 val_acc 0.4941391941391942 test_acc 0.6750130412102242
+138 train_acc 0.3944006849315068 val_acc 0.4846153846153846 test_acc 0.6750130412102242
+139 train_acc 0.39532534246575346 val_acc 0.5087912087912088 test_acc 0.6750130412102242
+140 train_acc 0.4085074200913241 val_acc 0.6014652014652015 test_acc 0.6750130412102242
+141 train_acc 0.4031421232876712 val_acc 0.49743589743589745 test_acc 0.6750130412102242
+142 train_acc 0.41386415525114156 val_acc 0.42490842490842495 test_acc 0.6750130412102242
+143 train_acc 0.4181021689497717 val_acc 0.6168498168498169 test_acc 0.6750130412102242
+144 train_acc 0.4162385844748858 val_acc 0.5516483516483517 test_acc 0.6750130412102242
+145 train_acc 0.4162357305936073 val_acc 0.6128205128205129 test_acc 0.6750130412102242
+146 train_acc 0.4163413242009133 val_acc 0.5923076923076923 test_acc 0.6750130412102242
+147 train_acc 0.39424657534246577 val_acc 0.6025641025641026 test_acc 0.6750130412102242
+148 train_acc 0.4044748858447489 val_acc 0.6157509157509158 test_acc 0.6750130412102242
+149 train_acc 0.40208618721461187 val_acc 0.598901098901099 test_acc 0.6750130412102242
+150 train_acc 0.40423801369863016 val_acc 0.5805860805860806 test_acc 0.6750130412102242
+151 train_acc 0.4021404109589041 val_acc 0.5864468864468865 test_acc 0.6750130412102242
+152 train_acc 0.4037043378995434 val_acc 0.5816849816849817 test_acc 0.6750130412102242
+153 train_acc 0.3847003424657534 val_acc 0.6076923076923078 test_acc 0.6750130412102242
+154 train_acc 0.40591038812785385 val_acc 0.5860805860805862 test_acc 0.6750130412102242
+155 train_acc 0.3989840182648402 val_acc 0.5893772893772894 test_acc 0.6750130412102242
+156 train_acc 0.39443493150684933 val_acc 0.6000000000000001 test_acc 0.6750130412102242
+157 train_acc 0.4122859589041096 val_acc 0.610989010989011 test_acc 0.6750130412102242
+158 train_acc 0.399226598173516 val_acc 0.6065934065934065 test_acc 0.6750130412102242
+159 train_acc 0.41670662100456624 val_acc 0.5230769230769231 test_acc 0.6750130412102242
+160 train_acc 0.40470034246575337 val_acc 0.6175824175824176 test_acc 0.6750130412102242
+161 train_acc 0.40377283105022826 val_acc 0.595970695970696 test_acc 0.6750130412102242
+162 train_acc 0.43484589041095895 val_acc 0.606959706959707 test_acc 0.6750130412102242
+163 train_acc 0.3956820776255707 val_acc 0.6076923076923078 test_acc 0.6750130412102242
+164 train_acc 0.38775399543378997 val_acc 0.4010989010989011 test_acc 0.6750130412102242
+165 train_acc 0.4013013698630136 val_acc 0.6205128205128205 test_acc 0.6750130412102242
+166 train_acc 0.382976598173516 val_acc 0.6062271062271062 test_acc 0.6750130412102242
+167 train_acc 0.4003553082191781 val_acc 0.6322344322344323 test_acc 0.6750130412102242
+168 train_acc 0.3939554794520548 val_acc 0.432967032967033 test_acc 0.6750130412102242
+169 train_acc 0.4017808219178082 val_acc 0.5593406593406594 test_acc 0.6750130412102242
+170 train_acc 0.4276227168949772 val_acc 0.5802197802197802 test_acc 0.6750130412102242
+171 train_acc 0.39199200913242005 val_acc 0.6073260073260074 test_acc 0.6750130412102242
+172 train_acc 0.3904138127853881 val_acc 0.5945054945054945 test_acc 0.6750130412102242
+173 train_acc 0.4059589041095891 val_acc 0.5695970695970697 test_acc 0.6750130412102242
+174 train_acc 0.3938441780821918 val_acc 0.5996336996336996 test_acc 0.6750130412102242
+175 train_acc 0.41535673515981736 val_acc 0.5794871794871795 test_acc 0.6750130412102242
+176 train_acc 0.39121004566210044 val_acc 0.5483516483516484 test_acc 0.6750130412102242
+177 train_acc 0.39902968036529674 val_acc 0.4208791208791209 test_acc 0.6750130412102242
+178 train_acc 0.40869006849315065 val_acc 0.5882783882783883 test_acc 0.6750130412102242
+179 train_acc 0.40327625570776254 val_acc 0.6333333333333334 test_acc 0.6750130412102242
+180 train_acc 0.4027482876712329 val_acc 0.39780219780219783 test_acc 0.6750130412102242
+181 train_acc 0.39142265981735164 val_acc 0.5750915750915752 test_acc 0.6750130412102242
+182 train_acc 0.40447488584474883 val_acc 0.5860805860805861 test_acc 0.6750130412102242
+183 train_acc 0.3989012557077626 val_acc 0.6062271062271063 test_acc 0.6750130412102242
+184 train_acc 0.38901826484018265 val_acc 0.5915750915750916 test_acc 0.6750130412102242
+185 train_acc 0.42506563926940644 val_acc 0.6007326007326008 test_acc 0.6750130412102242
+186 train_acc 0.41833904109589043 val_acc 0.4538461538461539 test_acc 0.6750130412102242
+187 train_acc 0.4086729452054795 val_acc 0.5919413919413921 test_acc 0.6750130412102242
+188 train_acc 0.40525256849315067 val_acc 0.5912087912087912 test_acc 0.6750130412102242
+189 train_acc 0.40022831050228314 val_acc 0.39670329670329674 test_acc 0.6750130412102242
+190 train_acc 0.3995291095890411 val_acc 0.5981684981684982 test_acc 0.6750130412102242
+191 train_acc 0.397097602739726 val_acc 0.5908424908424909 test_acc 0.6750130412102242
+192 train_acc 0.4326726598173516 val_acc 0.4062271062271062 test_acc 0.6750130412102242
+193 train_acc 0.4186729452054795 val_acc 0.6150183150183149 test_acc 0.6750130412102242
+194 train_acc 0.39992294520547944 val_acc 0.6000000000000001 test_acc 0.6750130412102242
+195 train_acc 0.408781392694064 val_acc 0.5919413919413921 test_acc 0.6750130412102242
+196 train_acc 0.4136244292237443 val_acc 0.580952380952381 test_acc 0.6750130412102242
+197 train_acc 0.3920405251141552 val_acc 0.563003663003663 test_acc 0.6750130412102242
+198 train_acc 0.40836472602739726 val_acc 0.5663003663003663 test_acc 0.6750130412102242
+199 train_acc 0.4041010273972603 val_acc 0.5494505494505495 test_acc 0.6750130412102242
+Finished training!
+Best validation score: 0.6212454212454213
+Test score: 0.6750130412102242
+acc mean: 0.6835332985567728  acc std: 0.007503199099423248 ece mean: 0.0 ece std 0.0
+End time: 2025-03-28 22:53:48
+Duration: 0:13:33.431335

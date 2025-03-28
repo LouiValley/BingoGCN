@@ -18,7 +18,7 @@ for exp_dir in exp_directories_1:
         directory = os.path.join(root_directory, exp_dir, data_type)
 
         if not os.path.exists(directory):
-            print(f"No directory: {directory}")
+            # print(f"No directory: {directory}")
             continue
 
         data = []
@@ -38,9 +38,9 @@ for exp_dir in exp_directories_1:
         if not df.empty:
             csv_path = os.path.join(directory, f"{exp_dir}_{data_type}_log_data.csv")
             df.to_csv(csv_path, index=False)
-            print(f"Saved CSV file: {csv_path}")
-        else:
-            print(f"No data: {directory}")
+        #     print(f"Saved CSV file: {csv_path}")
+        # else:
+        #     print(f"No data: {directory}")
 
 exp_directories_2 = [
     "fig18",
@@ -59,7 +59,7 @@ for exp_dir in exp_directories_2:
         directory = os.path.join(root_directory, exp_dir, data_type)
 
         if not os.path.exists(directory):
-            print(f"No directory: {directory}")
+            # print(f"No directory: {directory}")
             continue
 
         data = []
@@ -79,9 +79,9 @@ for exp_dir in exp_directories_2:
         if not df.empty:
             csv_path = os.path.join(directory, f"{exp_dir}_{data_type}_log_data.csv")
             df.to_csv(csv_path, index=False)
-            print(f"Saved CSV file: {csv_path}")
-        else:
-            print(f"No data: {directory}")
+        #     print(f"Saved CSV file: {csv_path}")
+        # else:
+        #     print(f"No data: {directory}")
 
 exp_directories_3 = [
     "fig15",
@@ -101,7 +101,7 @@ for exp_dir in exp_directories_3:
         directory = os.path.join(root_directory, exp_dir, data_type)
 
         if not os.path.exists(directory):
-            print(f"No directory: {directory}")
+            # print(f"No directory: {directory}")
             continue
 
         data = []
@@ -132,6 +132,6 @@ for exp_dir in exp_directories_3:
         if not df.empty:
             csv_path = os.path.join(directory, f"{exp_dir}_{data_type}_log_data.csv")
             df.to_csv(csv_path, index=False)
-            print(f"Saved CSV file: {csv_path}")
-        else:
-            print(f"No data: {directory}")
+        #     print(f"Saved CSV file: {csv_path}")
+        # else:
+        #     print(f"No data: {directory}")

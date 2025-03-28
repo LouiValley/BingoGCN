@@ -1,0 +1,21 @@
+Filename,Test Acc
+Ours_0.01.log,0.92065
+Ours_0.05.log,0.93204
+Ours_0.1.log,0.93681
+Ours_0.3.log,0.94291
+Ours_0.5.log,0.94599
+Ours_0.7.log,0.94785
+Ours_0.9.log,0.94870
+Ours_0.95.log,0.94894
+Ours_0.99.log,0.94899
+Random_0.01.log,0.94893
+Random_0.05.log,0.94843
+Random_0.1.log,0.94759
+Random_0.3.log,0.93927
+Random_0.5.log,0.92361
+Random_0.7.log,0.89447
+Random_0.9.log,0.83516
+Random_0.95.log,0.80294
+Random_0.99.log,0.76227
+No_inter_nodes.log,0.74873
+DWL.log,0.949015313358347

@@ -1,0 +1,20 @@
+Filename,Test Acc
+Ours_2.log,0.94812
+Ours_4.log,0.94525
+Ours_8.log,0.94154
+Ours_16.log,0.93482
+Ours_32.log,0.92863
+Ours_64.log,0.92464
+Ours_128.log,0.92063
+Ours_256.log,0.91325
+Ours_512.log,0.89932
+No_border_nodes_2.log,0.93659
+No_border_nodes_4.log,0.90841
+No_border_nodes_8.log,0.86971
+No_border_nodes_16.log,0.88258
+No_border_nodes_32.log,0.85472
+No_border_nodes_64.log,0.82078
+No_border_nodes_128.log,0.74873
+No_border_nodes_256.log,0.59312
+No_border_nodes_512.log,0.46701
+DWL.log,0.949015313358347
