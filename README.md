@@ -40,6 +40,8 @@ git clone https://github.com/LouiValley/BingoGCN.git
 ↓
 cd BingoGCN
 ↓
+source /opt/conda/bin/activate
+↓
 conda env create -f env/conda.yml
 ↓
 conda activate BingoGCN
