@@ -5,12 +5,12 @@ import networkx as nx
 import numpy as np
 import torch
 import torch_geometric.transforms as T
-from littleballoffur import (
-    DegreeBasedSampler,
-    RandomEdgeSampler,
-    RandomNodeEdgeSampler,
-    RandomNodeSampler,
-)
+# from littleballoffur import (
+#     DegreeBasedSampler,
+#     RandomEdgeSampler,
+#     RandomNodeEdgeSampler,
+#     RandomNodeSampler,
+# )
 from ogb.nodeproppred import PygNodePropPredDataset
 from scipy.sparse import csr_matrix
 from torch import Tensor
@@ -63,48 +63,48 @@ def load_ogbn(
             sparse_sizes=(num_nodes, num_nodes),
         )
 
-    if sampling is not None:
-        graph = to_networkx(data, node_attrs=["x", "y"], to_undirected=True)
-        if samplingtype == "RandomNodeSampler":
-            number_of_nodes = int(sampling * graph.number_of_nodes())
-            sampler = RandomNodeSampler(number_of_nodes=number_of_nodes)
-            new_graph = sampler.sample(graph)
-        elif samplingtype == "DegreeBasedSampler":
-            number_of_nodes = int(sampling * graph.number_of_nodes())
-            sampler = DegreeBasedSampler(number_of_nodes=number_of_nodes)
-            new_graph = sampler.sample(graph)
-        elif samplingtype == "RandomEdgeSampler":
-            number_of_edges = int(sampling * graph.number_of_edges())
-            sampler = RandomNodeEdgeSampler(number_of_edges=number_of_edges)
-            new_graph = sampler.sample(graph)
-            number_of_nodes = new_graph.number_of_nodes()
-        else:
-            print("wrong in sampling!")
+    # if sampling is not None:
+    #     graph = to_networkx(data, node_attrs=["x", "y"], to_undirected=True)
+    #     if samplingtype == "RandomNodeSampler":
+    #         number_of_nodes = int(sampling * graph.number_of_nodes())
+    #         sampler = RandomNodeSampler(number_of_nodes=number_of_nodes)
+    #         new_graph = sampler.sample(graph)
+    #     elif samplingtype == "DegreeBasedSampler":
+    #         number_of_nodes = int(sampling * graph.number_of_nodes())
+    #         sampler = DegreeBasedSampler(number_of_nodes=number_of_nodes)
+    #         new_graph = sampler.sample(graph)
+    #     elif samplingtype == "RandomEdgeSampler":
+    #         number_of_edges = int(sampling * graph.number_of_edges())
+    #         sampler = RandomNodeEdgeSampler(number_of_edges=number_of_edges)
+    #         new_graph = sampler.sample(graph)
+    #         number_of_nodes = new_graph.number_of_nodes()
+    #     else:
+    #         print("wrong in sampling!")
 
-        data1 = from_networkx(new_graph)
-        if samplingtype == "RandomEdgeSampler":
-            idxes = list(new_graph.nodes.keys())
-            data1.x = data.x[idxes].contiguous()
-            data1.y = data.y[idxes].contiguous()
-        data = data1
+    #     data1 = from_networkx(new_graph)
+    #     if samplingtype == "RandomEdgeSampler":
+    #         idxes = list(new_graph.nodes.keys())
+    #         data1.x = data.x[idxes].contiguous()
+    #         data1.y = data.y[idxes].contiguous()
+    #     data = data1
 
-        train_num = int(0.55 * number_of_nodes)
-        test_num = int(0.3 * number_of_nodes)
-        all_index = np.arange(number_of_nodes)
-        train_index = np.random.choice(
-            all_index, size=train_num, replace=False
-        )
-        index_remain = set(all_index) - set(train_index)
-        index_remain_array = np.array(list(index_remain))
-        test_index = np.random.choice(
-            index_remain_array, size=test_num, replace=False
-        )
-        val_index = list(index_remain - set(test_index))
-        split_idx = {
-            "train": torch.tensor(train_index).long(),
-            "test": torch.tensor(test_index).long(),
-            "valid": torch.tensor(val_index).long(),
-        }
+    #     train_num = int(0.55 * number_of_nodes)
+    #     test_num = int(0.3 * number_of_nodes)
+    #     all_index = np.arange(number_of_nodes)
+    #     train_index = np.random.choice(
+    #         all_index, size=train_num, replace=False
+    #     )
+    #     index_remain = set(all_index) - set(train_index)
+    #     index_remain_array = np.array(list(index_remain))
+    #     test_index = np.random.choice(
+    #         index_remain_array, size=test_num, replace=False
+    #     )
+    #     val_index = list(index_remain - set(test_index))
+    #     split_idx = {
+    #         "train": torch.tensor(train_index).long(),
+    #         "test": torch.tensor(test_index).long(),
+    #         "valid": torch.tensor(val_index).long(),
+    #     }
 
     return data, split_idx
 
@@ -212,6 +212,7 @@ def load_data(dataset, which_run, attack=None, attack_eps=0):
         data = Actor(path, transform=T.NormalizeFeatures())[0]
         data = change_split(data, dataset, which_split=int(which_run // 10))
     elif dataset == "Reddit":
+        path = os.path.join("dataset", dataset)
         data = Reddit(path)[0]
         # data = change_split(data, dataset, which_split=int(which_run // 10))
     else:
