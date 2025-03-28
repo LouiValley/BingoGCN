@@ -60,14 +60,20 @@ pip install -r env/requirements.txt
 # ↓ -->
 
 ## Running the Experiments
-> ### To experiment with all data points:
-```bash
-sh sh/all_jobs.sh
-```
+
 > ### To experiment with "Ours" only:
 ```bash
-sh sh/ours.sh
+sh scripts/jobs_ours.sh
 ```
+> ### To experiment with "Ours" and small dataset only:
+```bash
+sh scripts/jobs_ours_light.sh
+```
+> ### To experiment with all data points:
+```bash
+sh scripts/jobs_all.sh
+```
+
 Removing the --dataset Reddit option will speed up the process.
 
 ## Post-Experiment Steps
