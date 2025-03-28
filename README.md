@@ -40,7 +40,7 @@ git clone https://github.com/LouiValley/BingoGCN.git
 ↓
 cd BingoGCN
 ↓
-conda env create -f conda.yml
+conda env create -f env/conda.yml
 ↓
 conda activate BingoGCN
 ↓
@@ -53,17 +53,17 @@ pip install \
   https://data.pyg.org/whl/torch-1.13.0+cu116/torch_spline_conv-1.2.2%2Bpt113cu116-cp39-cp39-linux_x86_64.whl \
   torch-geometric
 ↓
-pip install -r pip.txt
+pip install -r env/pip.txt
 ```
 
 ## Running the Experiments
 > ### To experiment with all data points:
 ```bash
-sh all_jobs.sh
+sh sh/all_jobs.sh
 ```
 > ### To experiment with "Ours" only:
 ```bash
-sh ours.sh
+sh sh/ours.sh
 ```
 Removing the --dataset Reddit option will speed up the process.
 
@@ -71,7 +71,7 @@ Removing the --dataset Reddit option will speed up the process.
 After all experiments have completed, execute:
 
 ```bash
-python log_to_csv.py
+python BingoGCN/log_to_csv.py
 ```
 This script aggregates the results into CSV files within each log folder.
 
