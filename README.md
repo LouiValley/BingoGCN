@@ -37,9 +37,12 @@ pip install torch_geometric # For accessing datasets
 ## Environment Setup
 ```bash
 git clone https://github.com/LouiValley/BingoGCN.git
+↓
 cd BingoGCN
-
+↓
 conda env create -f conda.yml
+↓
+conda activate BingoGCN
 ↓
 pip install torch==1.13.0+cu116 torchvision==0.14.0+cu116 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu116
 ↓
@@ -51,8 +54,6 @@ pip install \
   torch-geometric
 ↓
 pip install -r pip.txt
-↓
-conda activate BingoGCN
 ```
 
 ## Running the Experiments
