@@ -140,6 +140,7 @@ python -m BingoGCN.graph_partitioning.main \
 # Offline K-means - #Centroids=64:
 python -m BingoGCN.graph_partitioning.main \
     --dataset ogbn-arxiv \
+    --n_parts 8 \
     --inter_cluster \
     --outgoing_kmeans \
     --num_kmeans_clusters 64\
@@ -148,6 +149,7 @@ python -m BingoGCN.graph_partitioning.main \
 # CMQ (only online) - #Centroids=64:
 python -m BingoGCN.graph_partitioning.main \
     --dataset ogbn-arxiv \
+    --n_parts 8 \
     --inter_cluster \
     --outgoing_kmeans \
     --online_kmeans \
