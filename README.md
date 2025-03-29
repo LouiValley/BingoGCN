@@ -1,265 +1,92 @@
-# BingoGCN: Towards Scalable and Efficient GNN Acceleration with Fine-Grained Partitioning and SLT
-
+# Artifact of the BingoGCN Paper, ISCA 2025
 
 Jiale Yan, Hiroaki Ito, Yuta Nagahara, Kazushi Kawamura, Masato Motomura, Thiem Van Chu, Daichi Fujiki.
 
 ---
 
-## Overview of evalutions
+This repository provides models and programs required for the artifact evaluation of the "BingoGCN: Towards Scalable and Efficient GNN Acceleration with Fine-Grained Partitioning and SLT" paper published in ISCA 2025. 
 
-We propose a GCN algorithm and accelerator co-design framework called BingoGCN.
+The artifact of this paper includes models and programs to reproduce the key contributions of fine-grained partitioning and SLT algorithms.
 
-* ***On the algorithm level***, BingoGCN integrates Strong Lottery Tickets (SLT) during the combination stage and introduces Cross-Partition Message Quantization (CMQ) in the aggregation stage to reduce computational overhead. Additionally, graph partitioning algorithms are employed to evaluate the impact of graph structure on performance.
+## Directory Structure
+- [BingoGCN](/BingoGCN/): Main project directory containing the core code and scripts.
+- [Expected_results](/Expected_results/): Directory storing expected results for artifact evaluation.
+- [\_\_outputs\_\_](/__outputs__/): Directory storing checkpoints of the baseline models.
+- [env](/env/): Directory for environment-related files.
+- [scripts](/scripts/): Directory containing scripts for job execution used in the project.
 
-* ***On the hardware level***, BingoGCN features a dedicated accelerator that exploits the sparsity and structure of the graphs produced by the algorithm-level optimizations, thereby further enhancing acceleration efficiency.
+## Requirements
+- NVIDIA GPUs with more than 32 GB of memory. The light version, using only small datasets, can run on a GPU with less memory.
+- OS supporting CUDA 11.6. The code is tested on Ubuntu 20.04.
+- Anaconda, PyTorch 1.13, CUDA 11.6.
+- A minimum of 4 GB of free disk space.
 
+## Environmental Setup
+Install CUDA 11.6 on a machine running a supported OS. Install Anaconda or Miniconda. Then, download the repository and install dependencies as follows. 
 
-
-<!-- ```bash
-# Python and PyTorch versions
-Python version: 3.10.8
-PyTorch version: 1.13.0+cu117
-
-# Install required packages
-pip install pymetis         # For METIS partitioning
-pip install torch_geometric # For accessing datasets
-``` -->
-
-<!-- This release contains codes focusing on the algorithmic part described in the paper.
-
-> **Offline METIS Graph Partitioning for Fig.1 in the paper.**
-> Dataset: OGBN-Arxiv with varying numbers of partitions
-> Code location: ./offline-METIS/ -->
-
-
-# Usage of the Provided Codes
-
-## Environment Setup
 ```bash
 git clone https://github.com/LouiValley/BingoGCN.git
-↓
 cd BingoGCN
-↓
-source /opt/conda/bin/activate
-↓
+
 conda env create -f env/conda.yml
-↓
 conda activate BingoGCN
-↓
 pip install -r env/requirements.txt
 ```
 
-<!-- # pip install torch==1.13.0+cu116 torchvision==0.14.0+cu116 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu116
-# ↓
-# pip install \
-#   https://data.pyg.org/whl/torch-1.13.0+cu116/torch_scatter-2.1.1%2Bpt113cu116-cp39-cp39-linux_x86_64.whl \
-#   https://data.pyg.org/whl/torch-1.13.0+cu116/torch_sparse-0.6.17%2Bpt113cu116-cp39-cp39-linux_x86_64.whl \
-#   https://data.pyg.org/whl/torch-1.13.0+cu116/torch_cluster-1.6.1%2Bpt113cu116-cp39-cp39-linux_x86_64.whl \
-#   https://data.pyg.org/whl/torch-1.13.0+cu116/torch_spline_conv-1.2.2%2Bpt113cu116-cp39-cp39-linux_x86_64.whl \
-#   torch-geometric
-# ↓ -->
+## Run Artifact
+Use one of the scripts in the [scripts](/scripts/) directory. 
 
-## Running the Experiments
-
-> ### To experiment with "Ours" only:
-```bash
-sh scripts/jobs_ours.sh
-```
-> ### To experiment with "Ours" and small dataset only:
-```bash
-sh scripts/jobs_ours_light.sh
-```
-> ### To experiment with all data points:
+### To reproduce all data points:
 ```bash
 sh scripts/jobs_all.sh
 ```
+> [!NOTE]
+> This will take approximately two days with 8 GPUs and can take weeks on a single GPU. For the artifact evaluation, we recommend the other options below. 
 
-Removing the --dataset Reddit option will speed up the process.
+### To reproduce "Ours" only:
+```bash
+sh scripts/jobs_ours.sh
+```
+This script evaluates the data points of our proposed design, reducing the single-GPU runtime to a few days. 
+
+### To reproduce small datasets in "Ours":
+```bash
+sh scripts/jobs_ours_light.sh
+```
+This script reduces repetition counts and skips evaluation on large datasets. This will only take 2~3 hours to complete. 
+
 
 ## Post-Experiment Steps
-After all experiments have completed, execute:
+Each experiment makes a directory under ./logs. 
+After the experiments, run:
 
 ```bash
 python BingoGCN/log_to_csv.py
 ```
-This script aggregates the results into CSV files within each log folder.
+This script aggregates the results into CSV files within each log directory.
 
-Finally, compare these results with the ones in the expected_results folder.
-You can verify that the data points in the figures match, allowing for minor discrepancies.
+Finally, compare these results with the ones in the expected_results directory.
+You can verify the data points in the figures with them. There can be minor discrepancies in the numbers due to non-deterministic factors such as RNG states.
 
-## Example
-> **Centroid (Sampling) Ratio vs. Accuracy: Fig.15
-![Figure 15](images/Fig15.svg)
-```bash
-# Ours (CMQ) - Sampling ratio 1%
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --inter_cluster \
-    --outgoing_kmeans \
-    --hierarchical_kmeans \
-    --fixed_centroid_ratio \
-    --centroid_ratio 0.01 \
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
+## Experiment Customizations
+See [Customize.md](/Customize.md).
 
-# Random - Sampling ratio 1%
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --inter_cluster \
-    --random_sampling \
-    --inter_sparsity 0.99 \
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
+## Citation
+If you use *BingoGCN*, please cite this paper:
+
+> Jiale Yan, Hiroaki Ito, Yuta Nagahara, Kazushi Kawamura, Masato Motomura, Thiem Van Chu, and Daichi Fujiki,
+> *"BingoGCN: Towards Scalable and Efficient GNN Acceleration with Fine-Grained Partitioning and SLT,"*
+> In Proceedings of the 52nd Annual International Symposium on Computer Architecture (ISCA'25)
+
+```
+@inproceedings{bingogcn,
+  title={BingoGCN: Towards Scalable and Efficient GNN Acceleration with Fine-Grained Partitioning and SLT},
+  author={Yan, Jiale and Ito, Hiroaki and Nagahara, Yuta and Kawamura, Kazushi and Motomura, Masato and Chu, Thiem Van and Fujiki, Daichi},
+  booktitle={Proceedings of the 52nd Annual International Symposium on Computer Architecture}, 
+  year={2025}
+}
 ```
 
-> **Num of Partitions vs. CMQ's Accuracy with fixed centroid ratio at 1%: Fig.16
-![Figure 16](images/Fig16.svg)
-```bash
-# Ours (CMQ) - #parts=64:
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --n_parts 64 \
-    --validate \
-    --inter_cluster \
-    --outgoing_kmeans \
-    --hierarchical_kmeans \
-    --fixed_centroid_ratio \
-    --centroid_ratio 0.01 \
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
+## Licensing
 
-# No border nodes - #parts=64:
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --n_parts 64 \
-    --validate \
-    --no_inter_cluster \
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
-```
-
-> **Traditional offline K-means vs. CMQ: Fig.17
-![Figure 17](images/Fig17.svg)
-```bash
-# Offline K-means - #Centroids=64:
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --n_parts 8 \
-    --inter_cluster \
-    --outgoing_kmeans \
-    --num_kmeans_clusters 64\
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
-
-# CMQ (only online) - #Centroids=64:
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --n_parts 8 \
-    --inter_cluster \
-    --outgoing_kmeans \
-    --online_kmeans \
-    --num_kmeans_clusters 64 \
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
-
-# CMQ (online = hierarchical) - #Centroids=64:
-python -m BingoGCN.graph_partitioning.main \
-    --dataset ogbn-arxiv \
-    --n_parts 8 \
-    --inter_cluster \
-    --outgoing_kmeans \
-    --hierarchical_kmeans \
-    --num_kmeans_clusters 64 \
-    --pretrained_log BingoGCN/pretrained_logs/SLT_structured_Dense_baseline/GCN/ogbn-arxiv/SLT_structured_Dense_baseline_GCN_HD192_ogbn-arxiv_L4_S0.log
-```
-
-> **Weight Capacity vs. Accuracy: Fig.18
-![Figure 18](images/Fig18.svg)
-```bash
-# FG Sparsity with SLT - #dim_hidden=192:
-python ./BingoGCN/main.py \
-    --command train \
-    --num_layers 3 \
-    --dim_hidden 192 \
-    --dataset Cora \
-    --train_mode score_only \
-    --exp_name test \
-    --epochs 400 \
-    --type_model GCN \
-    --repeat_times 10 \
-    --sparse_decay \
-    --init_mode signed_constant_SF \
-    --sparsity_list 0.562500 0.708333 0.854167 \
-    --linear_sparsity 0.5625 \
-    --unstructured_for_last_layer \
-    --enable_mask \
-    --nmsparsity \
-    --M 16 \
-    --type_norm None
-
-# Unstructured SLT - #dim_hidden=192:
-python ./BingoGCN/main.py \
-    --command train \
-    --num_layers 3 \
-    --dim_hidden 192 \
-    --dataset Cora \
-    --train_mode score_only \
-    --exp_name test \
-    --epochs 400 \
-    --type_model GCN \
-    --repeat_times 5 \
-    --sparse_decay \
-    --unstructured_for_last_layer \
-    --init_mode xor16_offset \
-    --sparsity_list 0.500000 0.666667 0.833333 \
-    --linear_sparsity 0.5 \
-    --enable_mask \
-    --type_norm None \
-
-# DWL - #dim_hidden=192:
-python ./BingoGCN/main.py \
-    --command train \
-    --num_layers 3 \
-    --dim_hidden 192 \
-    --dataset Cora \
-    --train_mode normal \
-    --exp_name test \
-    --epochs 400 \
-    --type_model GCN \
-    --repeat_times 10 \
-    --init_mode kaiming_uniform \
-    --linear_sparsity 0 \
-    --type_norm None
-```
-
-> **Model Sparsity vs. Accuracy: Fig.19
-![Figure 19](images/Fig19.svg)
-```bash
-# FG Sparsity with SLT - Sparsity=50%:
-python ./BingoGCN/main.py \
-    --command train \
-    --num_layers 3 \
-    --dim_hidden 192 \
-    --dataset Cora \
-    --train_mode score_only \
-    --exp_name test \
-    --epochs 400 \
-    --type_model GCN \
-    --repeat_times 10 \
-    --sparse_decay \
-    --init_mode signed_constant_SF \
-    --sparsity_list 0.500000 0.666667 0.833333 \
-    --linear_sparsity 0.5 \
-    --unstructured_for_last_layer \
-    --enable_mask \
-    --nmsparsity \
-    --M 16 \
-    --type_norm None \
-```
-<!--
-Supported models
-- 3/4 layer GCNs with 192 hidden dimensions.
-
-Supported datasets
-How to change the dataset "XXXX change path = load_dir"
-- Cora
-- CiteSeer
-- Pubmed
-- OGBN-Arxiv
-- OGBN-Reddit
-- Other graph-level tasks.
- -->
+This repository is available under a [MIT license](/LICENSE).
