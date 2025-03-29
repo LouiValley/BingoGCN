@@ -1,17 +1,35 @@
+Traceback (most recent call last):
+  File "/artic/h-ito/.conda/envs/ffcv/lib/python3.9/site-packages/numpy/core/multiarray.py", line 346, in where
+    @array_function_from_c_func_and_dispatcher(_multiarray_umath.where)
+KeyboardInterrupt
+Exception ignored in: 'sklearn.cluster._k_means_common._relocate_empty_clusters_dense'
+Traceback (most recent call last):
+  File "/artic/h-ito/.conda/envs/ffcv/lib/python3.9/site-packages/numpy/core/multiarray.py", line 346, in where
+    @array_function_from_c_func_and_dispatcher(_multiarray_umath.where)
+KeyboardInterrupt: 
+Traceback (most recent call last):
+  File "/artic/h-ito/.conda/envs/ffcv/lib/python3.9/site-packages/numpy/core/multiarray.py", line 346, in where
+    @array_function_from_c_func_and_dispatcher(_multiarray_umath.where)
+KeyboardInterrupt
+Exception ignored in: 'sklearn.cluster._k_means_common._relocate_empty_clusters_dense'
+Traceback (most recent call last):
+  File "/artic/h-ito/.conda/envs/ffcv/lib/python3.9/site-packages/numpy/core/multiarray.py", line 346, in where
+    @array_function_from_c_func_and_dispatcher(_multiarray_umath.where)
+KeyboardInterrupt: 
 Layer1
 Layer2
 Layer3
 Layer4
-0.6991337983252063
+0.6937637594387178
 Layer1
 Layer2
 Layer3
 Layer4
-0.697940456350431
+0.6898133860049791
 Layer1
 Layer2
 Layer3
 Layer4
-0.6962533176964385
-[0.6991337983252063, 0.697940456350431, 0.6962533176964385]
-{'Dataset': 'ogbn-arxiv', 'Model Name': 'GCN', 'No partition Test Acc': '0.7199514433265437', 'Test Acc': '0.69778', 'Avg num intra nodes': 1288.0, 'Avg num inter nodes': 1254.0, 'Avg num intra and inter nodes': 2542.0, 'Execution time': 988.1251423358917}
+0.6932493878978664
+[0.6937637594387178, 0.6898133860049791, 0.6932493878978664]
+{'Dataset': 'ogbn-arxiv', 'Model Name': 'GCN', 'No partition Test Acc': '0.7199514433265437', 'Test Acc': '0.69228', 'Avg num intra nodes': 21168.0, 'Avg num inter nodes': 4879.0, 'Avg num intra and inter nodes': 26047.0, 'Execution time': 3153.685529947281}

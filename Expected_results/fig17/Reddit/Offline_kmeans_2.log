@@ -5,7 +5,7 @@ Layer1
 Layer2
 Layer3
 Layer4
-0.8878695940972658
+0.8926269680268567
 | # of train set : 153431
 | # of val set   : 23831
 | # of test set  : 55703
@@ -13,7 +13,7 @@ Layer1
 Layer2
 Layer3
 Layer4
-0.8920883973933181
+0.8932014433692979
 | # of train set : 153431
 | # of val set   : 23831
 | # of test set  : 55703
@@ -21,6 +21,6 @@ Layer1
 Layer2
 Layer3
 Layer4
-0.9021596682404898
-[0.8878695940972658, 0.8920883973933181, 0.9021596682404898]
-{'Dataset': 'Reddit', 'Model Name': 'GCN', 'No partition Test Acc': '0.950842863041488', 'Test Acc': '0.89404', 'Avg num intra nodes': 1873.0, 'Avg num inter nodes': 55341.0, 'Avg num intra and inter nodes': 57214.0, 'Execution time': 10815.984509944916}
+0.899538624490602
+[0.8926269680268567, 0.8932014433692979, 0.899538624490602]
+{'Dataset': 'Reddit', 'Model Name': 'GCN', 'No partition Test Acc': '0.950842863041488', 'Test Acc': '0.89512', 'Avg num intra nodes': 29120.0, 'Avg num inter nodes': 73762.0, 'Avg num intra and inter nodes': 102882.0, 'Execution time': 2796.743438720703}

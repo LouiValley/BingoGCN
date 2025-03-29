@@ -2,16 +2,16 @@ Layer1
 Layer2
 Layer3
 Layer4
-0.7143591959344073
+0.7121782606011975
 Layer1
 Layer2
 Layer3
 Layer4
-0.7111083677962265
+0.7087216838466761
 Layer1
 Layer2
 Layer3
 Layer4
-0.7105322716704731
-[0.7143591959344073, 0.7111083677962265, 0.7105322716704731]
-{'Dataset': 'ogbn-arxiv', 'Model Name': 'GCN', 'No partition Test Acc': '0.7199514433265437', 'Test Acc': '0.71200', 'Avg num intra nodes': 1288.0, 'Avg num inter nodes': 1254.0, 'Avg num intra and inter nodes': 2542.0, 'Execution time': 2961.2032866477966}
+0.7092566302491615
+[0.7121782606011975, 0.7087216838466761, 0.7092566302491615]
+{'Dataset': 'ogbn-arxiv', 'Model Name': 'GCN', 'No partition Test Acc': '0.7199514433265437', 'Test Acc': '0.71005', 'Avg num intra nodes': 21168.0, 'Avg num inter nodes': 4879.0, 'Avg num intra and inter nodes': 26047.0, 'Execution time': 4402.096768140793}
