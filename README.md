@@ -16,7 +16,7 @@ The artifact of this paper includes models and programs to reproduce the key con
 - [scripts](/scripts/): Directory containing scripts for job execution used in the project.
 
 ## Requirements
-- NVIDIA GPUs with more than 32 GB of memory. The light version, using only small datasets, can run on a GPU with less memory.
+- NVIDIA GPUs with more than 32 GB of memory.
 - OS supporting CUDA 11.6. The code is tested on Ubuntu 20.04.
 - Anaconda, PyTorch 1.13, CUDA 11.6.
 - A minimum of 4 GB of free disk space.
@@ -53,7 +53,7 @@ This script evaluates the data points of our proposed design, reducing the singl
 ```bash
 sh scripts/jobs_ours_light.sh
 ```
-This script reduces repetition counts and skips evaluation on large datasets. This will only take 2~3 hours to complete. 
+This script reduces repetition counts and skips some evaluations on large datasets. This will only take 2~3 hours to complete. 
 
 
 ## Post-Experiment Steps
