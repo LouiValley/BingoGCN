@@ -183,8 +183,8 @@ python ./BingoGCN/main.py \
     --repeat_times 10 \
     --sparse_decay \
     --init_mode signed_constant_SF \
-    --sparsity_list 0.812500 0.875000 0.937500 \
-    --linear_sparsity 0.8125 \
+    --sparsity_list 0.562500 0.708333 0.854167 \
+    --linear_sparsity 0.5625 \
     --unstructured_for_last_layer \
     --enable_mask \
     --nmsparsity \
@@ -205,8 +205,8 @@ python ./BingoGCN/main.py \
     --sparse_decay \
     --unstructured_for_last_layer \
     --init_mode xor16_offset \
-    --sparsity_list 0.800000 0.866667 0.933333 \
-    --linear_sparsity 0.8 \
+    --sparsity_list 0.500000 0.666667 0.833333 \
+    --linear_sparsity 0.5 \
     --enable_mask \
     --type_norm None \
 
